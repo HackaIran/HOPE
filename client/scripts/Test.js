@@ -120,6 +120,12 @@ class Test {
 
     appendResult(data) {
 
+        // change text of the search bar
+
+        $$("#searchBoxCont>input").value = data.repositoryUrl;
+
+        // change score props
+
         $$("#scoreText").innerText = data.scoreText;
 
         $$("#score").innerText = data.mark;
@@ -188,6 +194,16 @@ class Test {
         // animate scroll
 
         new window.ScrollAnimate();
+
+        // set name of the repository
+
+        let repositoryName = data.repositoryUrl.split("/").pop();
+
+        $$("#scoreResultCont>div:first-of-type>span.highlight").textContent = repositoryName;
+
+        $$(".resultSide:nth-of-type(2)>h2>span.highlight").textContent = repositoryName;
+
+        
 
     }
 
