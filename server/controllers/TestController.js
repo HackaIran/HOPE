@@ -58,6 +58,10 @@ class TestController {
 
     }
 
+    getTest(){
+        
+    }
+
 }
 
 module.exports = TestController;

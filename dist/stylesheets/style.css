@@ -1,1 +1,19 @@
 
+
+/*progress bar*/
+
+#nprogress {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: #fec10b;
+    width: 0%;
+    height: 3px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(254, 193, 11, 0.75);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(254, 193, 11, 0.75);
+    box-shadow: 0px 0px 15px 0px rgba(254, 193, 11, 0.75);
+    transition-duration: 0.25s;
+    z-index: 100;
+}
