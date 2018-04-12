@@ -9,6 +9,7 @@ const PrettyError = require('pretty-error');
 const pe = new PrettyError;
 
 const index = require('./routes/index');
+const api = require('./routes/api');
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'dist')));
 
 app.use('/', index);
+app.use('/api/',api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

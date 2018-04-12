@@ -15,15 +15,16 @@
     "url": "git+https://github.com/HackaIran/hope.git"
   },
   "dependencies": {
-    "mongoose": "^4.12.1",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.15.5",
+    "github-hope": "^0.2.0",
+    "mongoose": "^4.12.1",
     "morgan": "~1.9.0",
+    "pretty-error": "^2.1.1",
     "pug": "^2.0.1",
-    "serve-favicon": "~2.4.5",
-    "pretty-error": "^2.1.1"
+    "serve-favicon": "~2.4.5"
   },
   "devDependencies": {
     "css-loader": "^0.28.11",
