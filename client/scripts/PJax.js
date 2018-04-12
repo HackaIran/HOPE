@@ -70,6 +70,12 @@ class PJax {
      */
 
     backOrForward(e) {
+
+        if(/\/result\/.+/.test(e.path[0].location.pathname)){// if the result page is requested
+            window.location.reload();
+            return false;
+        }
+
         this.appenPatial(e.path[0].location.pathname)
     }
 
