@@ -1,4 +1,5 @@
 const axios = require("axios");
+
 const PJax = require('./PJax');
 
 class Test {
@@ -67,10 +68,6 @@ class Test {
                             })
                         }, 500)
                     });
-
-
-
-
 
                 }, 500);
 
@@ -204,9 +201,11 @@ class Test {
 
         // hideLoading
 
-        $$(".resultSide:last-of-type .blur").classList.remove('blur');
+        $$("#tipsCont.blur").classList.remove('blur');
 
         $$(".resultSide:last-of-type .loadingOverlay").style.display = "none";
+
+        $$(".resultSide:last-of-type .blur").classList.remove('blur');
 
         // animate scroll
 
