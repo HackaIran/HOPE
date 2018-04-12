@@ -3,13 +3,15 @@ extends layout
 block content
   #resultCont
     .resultSide
+      .loadingOverlay
+          .spinner
       h1 HOPE.
       h4 [H]ackademy [O]pen-Source [P]rojects [E]valuator
       #searchBoxCont
         input(type="search",placeholder="Ex.https://github.com/HackaIran/HOPE")
         div
           i
-      #scoreResultCont
+      #scoreResultCont.blur
         div
           span.highlight "HackaPanel"
           span  Health:
@@ -19,10 +21,12 @@ block content
           span /100
 
     .resultSide
+      .loadingOverlay
+        .spinner
       h2
         span.highlight "HackaPanel"
         span  Tips:
-      #tipsCont
+      #tipsCont.blur
         #tipsSlideCont
           .tip
             i.tipType.warning
@@ -66,3 +70,6 @@ block content
               a.tipHelp(href="#").fail
               .tipText some text goes here some text goes here some text goes here some text goes here some text goes here some text goes here 
             a.tipFix(href="#")
+block script
+  script.
+    let scrollAnimate = new window.ScrollAnimate();

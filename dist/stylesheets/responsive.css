@@ -1,0 +1,12 @@
+@media screen and (max-width: 1000px){
+    #wrapper{
+        height: auto;
+        min-height: 100%;
+    }
+    #resultCont{
+        display: block;
+    }
+    .resultSide{
+        width: 100%;
+    }
+}
