@@ -6,12 +6,12 @@ block content
       h1 HOPE.
       h4 [H]ackademy [O]pen-Source [P]rojects [E]valuator
       #searchBoxCont
-        input(type="search",placeholder="Ex.https://github.com/HackaIran/HOPE")
+        input(type="search",placeholder="Ex.https://github.com/HackaIran/HOPE",value=data.repositoryUrl)
         div
           i
       #scoreResultCont
         div
-          span.highlight "HackaPanel"
+          span.highlight "#{data.repositoryUrl.split('/').pop()}"
           span  Health:
         div#scoreCont
           div#scoreText(class=data.scoreColor) #{data.scoreText}
@@ -20,7 +20,7 @@ block content
 
     .resultSide
       h2
-        span.highlight "HackaPanel"
+        span.highlight "#{data.repositoryUrl.split('/').pop()}"
         span  Tips:
       #tipsCont
         #tipsSlideCont
