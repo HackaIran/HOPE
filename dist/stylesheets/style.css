@@ -3,13 +3,17 @@
     position: absolute;
     top:0px;
     left:0px;
-    right: 0px;
-    bottom: 0px;
-    margin: auto;
     background-image: url('../images/background.png');
     background-size: cover;
     font-family: 'Fira Sans';
     color:white;
+    height: 100%;
+}
+
+/* globals */
+
+.highlight{
+    color:#fec10b;
 }
 
 /* index */
@@ -106,6 +110,167 @@
 #searchBoxCont>div:active{
     transform: scale(0.95);
     transition-duration: 0.2s;
+}
+
+/* result page */
+
+#resultCont{
+    width: 100%;
+    display: flex;
+    height: 100%;
+    box-sizing: border-box;
+    padding-bottom: 55px;
+}
+
+.resultSide{
+    width: 50%;
+    padding: 10px;
+    max-height: 100%;
+}
+
+.resultSide:nth-of-type(1)>h1{
+    width: 100%;
+    height: 60px;
+    font-size: 50px;
+    margin: 10px 0px 0px 0px;
+    font-weight: bold;
+}
+
+.resultSide:nth-of-type(1)>h4{
+    margin-top: 5px;
+    width: 100%;
+    font-size: 18px;
+    font-weight: normal;
+    color:#eee;
+}
+
+.resultSide:nth-of-type(1)>#searchBoxCont{
+    height: 50px;
+    /* width: 80%; */
+}
+
+.resultSide:nth-of-type(1)>#searchBoxCont>div{
+    width: 36px;
+    height: 36px;
+}
+
+.resultSide:nth-of-type(1)>#searchBoxCont>input[type=search]::placeholder{
+    font-size: 16px;
+}
+
+#scoreResultCont{
+    width: 100%;
+    margin-top: 50px;
+}
+
+#scoreResultCont>div:first-of-type{
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+#scoreCont{
+    width: 100%;
+    height: 400px;
+    text-align: center;
+}
+
+#scoreText{
+    font-size: 70px;
+    text-align: center;
+    height: 80px;
+    padding: 20px 0px;
+    width: 100%;
+    font-weight: bold;
+}
+
+#score{
+    font-size: 50px;
+    font-weight: bold;
+}
+
+#scoreCont>span:last-of-type{
+    color:#686868;
+}
+
+/* for scores */
+
+.green{
+    color:green;
+}
+
+.orange{
+    color:orange;
+}
+
+.red{
+    color:red;
+}
+
+/* tips */
+
+.resultSide:nth-of-type(2){
+    overflow-y:scroll;
+}
+
+.resultSide:nth-of-type(2)>h2{
+    width: 100%;
+    height: 50px;
+    font-size: 40px;
+}
+
+#tipsCont{
+    width: 100%;
+    height: auto;
+}
+
+.tip{
+    width: 100%;
+    min-height: 100px;
+    display: flex;
+    margin-top: 10px;
+}
+
+.tipHeading{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.tipType{
+    min-width: 50px;
+    height: 50px;
+    background-size: 60% 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.tipType.warning{
+    background-image: url('../images/warning.png');
+}
+
+.tipType.success{
+    background-image: url('../images/success.png');
+}
+
+.tipType.fail{
+    background-image: url('../images/fail.png');
+}
+
+.tipFix{
+    min-width: 50px;
+    height: 40px;
+    align-self:center;
+    display: block;
+    background-image: url('../images/fix.png');
+    background-size: 90% 90%;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* footer */
