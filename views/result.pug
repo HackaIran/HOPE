@@ -14,8 +14,8 @@ block content
           span.highlight "HackaPanel"
           span  Health:
         div#scoreCont
-          div#scoreText.green #{data.scoreText}
-          span#score.green #{mark}
+          div#scoreText(class=data.scoreColor) #{data.scoreText}
+          span#score(class=data.scoreColor) #{mark}
           span /100
 
     .resultSide
@@ -24,7 +24,16 @@ block content
         span  Tips:
       #tipsCont
         #tipsSlideCont
-          
+          each val,index in data.result
+            .tip
+              i.tipType(class=val.status.toLowerCase())
+              .tipContent
+                .tipHeading
+                  = val.type
+                a.tipHelp(href="#")
+                .tipText 
+                  = val.message
+              a.tipFix(href="#")
 block script
   script.
     let scrollAnimate = new window.ScrollAnimate();
