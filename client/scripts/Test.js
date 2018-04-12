@@ -74,9 +74,7 @@ class Test {
 
         return new Promise((resolve) => {
 
-
-
-            axios.post('api/preInitialTest', {
+            axios.post(window.location.origin+'/api/preInitialTest', {
                 repositoryUrl: url
             }, {
                 headers: {
@@ -108,7 +106,7 @@ class Test {
 
     getResult(uniqueName) {
         return new Promise((resolve, reject) => {
-            axios.post('/api/initiateTest', {
+            axios.post(window.location.origin+'/api/initiateTest', {
                 uniqueName
             }, {
                 headers: {

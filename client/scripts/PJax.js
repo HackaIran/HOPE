@@ -31,7 +31,7 @@ class PJax {
 
         document.dispatchEvent(new Event("pjax:start"));
 
-        axios.get(url, {
+        axios.get(window.location.origin+url, {
             headers: { 'X-pjax': 'true' }
         }).then((result) => {
             this.wrapperElem.innerHTML = result.data;
@@ -57,7 +57,7 @@ class PJax {
      */
 
     navigate(url, title) {
-        history.pushState({}, title, url);
+        history.pushState({}, title, window.location.origin+"/"+url);
         document.title = title;
     }
 
