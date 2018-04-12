@@ -9,7 +9,7 @@ class Test {
      * 
      */
 
-    constructor(){
+    constructor() {
         this.pjax = new PJax("wrapper");
     }
 
@@ -44,7 +44,19 @@ class Test {
             searchBtn.style.pointerEvents = "none";
             searchBtn.querySelector("i").classList.add("loading");
 
-            this.preInitiateTest(url);
+            this.preInitiateTest(url).then((uniqueName, repositoryName) => {
+                this.pjax.navigate('result/' + uniqueName, "HOPE - Result of " + repositoryName);
+
+                this.pjax.appenPatial('/result/' + uniqueName);
+
+                this.getResult(uniqueName).then((result) => {
+
+                    result = result.data;
+
+                    this.appendResult(result);
+
+                })
+            })
 
         }
 
@@ -60,32 +72,30 @@ class Test {
 
     preInitiateTest(url) {
 
-        axios.post('api/preInitialTest',{repositoryUrl:url},{
-            headers: { 'Content-Type': 'application/json' }
-        }).then((result)=>{
+        return new Promise((resolve) => {
 
-            let uniqueName = result.data.uniqueName;
 
-            let repositoryName = uniqueName.split("-");
 
-            repositoryName.pop();
+            axios.post('api/preInitialTest', {
+                repositoryUrl: url
+            }, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then((result) => {
 
-            repositoryName = repositoryName.join(" ");
+                let uniqueName = result.data.uniqueName;
 
-            this.pjax.navigate('result/'+uniqueName,"HOPE - Result of "+repositoryName);
+                let repositoryName = uniqueName.split("-");
 
-            this.pjax.appenPatial('/result/'+uniqueName);
+                repositoryName.pop();
 
-            this.getResult(uniqueName).then((result)=>{
+                repositoryName = repositoryName.join(" ");
 
-                result = result.data;
-
-                this.appendResult(result);
+                resolve(uniqueName, repositoryName)
 
             })
-
         })
-
     }
 
     /**
@@ -96,21 +106,23 @@ class Test {
      * 
      */
 
-    getResult(uniqueName){
-        return new Promise((resolve,reject)=>{
-            axios.post('/api/initiateTest',{uniqueName},{
-                headers:{'Content-type':'application/json'}
+    getResult(uniqueName) {
+        return new Promise((resolve, reject) => {
+            axios.post('/api/initiateTest', {
+                uniqueName
+            }, {
+                headers: {
+                    'Content-type': 'application/json'
+                }
             }).then(resolve)
         })
     }
 
-    appendResult(data){
-
-        console.log(data)
+    appendResult(data) {
 
         $$("#scoreText").innerText = data.scoreText;
 
-        $$("#score").innerText = data.quality;
+        $$("#score").innerText = data.mark;
 
         $$("#score").classList = data.scoreColor;
 
@@ -124,7 +136,7 @@ class Test {
 
         // let's add tips
 
-        for(let tip of data.results){
+        for (let tip of data.result) {
 
             let tipCont = document.createElement("div");
             tipCont.classList.add("tip");
@@ -179,7 +191,7 @@ class Test {
 
     }
 
-    
+
 
 }
 

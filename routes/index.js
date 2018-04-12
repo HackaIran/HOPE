@@ -3,6 +3,14 @@ const router = express.Router();
 
 const Result = require("../server/model/Result");
 
+const TestController = require("../server/controllers/TestController");
+
+//
+
+const testController = new TestController();
+
+//
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   
@@ -28,16 +36,10 @@ router.get('/result/:uniqueName',function(req,res){
     res.render('result-partial',{title:'HOPE'});
 
   }else{
-
-    Result.findOne({uniqueName:req.params.uniqueName}).then((result)=>{
-
-      result = Result.calculateScoreProps(result);
-      // delete unnecessary props
-      delete result._id;
-      delete result._v;
-
+    testController.getTest(req.params.uniqueName).then((result)=>{
       res.render('result',{title:'HOPE | '+result.uniqueName,mark:result.mark,data:result});
-
+    }).catch((e)=>{
+      console.log(e)
     })
 
     
