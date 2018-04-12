@@ -1,6 +1,8 @@
-class Test{
+const axios = require("axios");
 
-    constructor(){
+class Test {
+
+    constructor() {
 
         // initiating events
 
@@ -8,7 +10,31 @@ class Test{
 
     }
 
-    inititaEvents(){
+    inititaEvents() {
+
+        // onclick search Button
+
+        let searchBtn = document.querySelector("#searchBoxCont>div");
+
+        searchBtn.onclick = () => {
+
+            searchBtn.style.opacity = 0.5;
+            searchBtn.style.pointerEvents = "none";
+            searchBtn.querySelector("i").classList.add("loading");
+
+            this.preInitiateTest(document.querySelector("#searchBoxCont>input[type=search]").value);
+
+        }
+
+    }
+
+    showLoading() {
+
+    }
+
+    preInitiateTest(url) {
+
+
 
     }
 

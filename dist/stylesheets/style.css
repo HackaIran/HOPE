@@ -1,4 +1,149 @@
+#wrapper{
+    width: 100%;
+    position: absolute;
+    top:0px;
+    left:0px;
+    right: 0px;
+    bottom: 0px;
+    margin: auto;
+    background-image: url('../images/background.png');
+    background-size: cover;
+    font-family: 'Fira Sans';
+    color:white;
+}
 
+/* index */
+
+#searchBarCont{
+    width: 100%;
+    max-width: 700px;
+    padding:0px 20px;
+    box-sizing: border-box;
+    height: 400px;
+    position: absolute;
+    top:0px;
+    left:0px;
+    right: 0px;
+    bottom: 0px;
+    margin: auto;
+}
+
+#searchBarCont>h1{
+    width: 100%;
+    height: 60px;
+    font-size: 70px;
+    margin: 10px 0px 5px 0px;
+    font-weight: bold;
+}
+
+#searchBarCont>h4{
+    width: 100%;
+    font-size: 24px;
+    font-weight: normal;
+    color:#eee;
+}
+
+#searchBoxCont{
+    width: 100%;
+    height: 70px;
+    background-color:#656565;
+    border-radius: 10px;
+}
+
+#searchBoxCont>input[type=search]{
+    width: calc(100% - 70px);
+    height: 100%;
+    border-radius: 10px;
+    background-color:transparent;
+    border-color:transparent;
+    font-size: 22px;
+    color:white;
+    padding-left: 20px;
+    font-family: 'Fira Sans';
+}
+
+#searchBoxCont>input[type=search]::placeholder{
+    color:rgb(158, 158, 158);
+    font-family: 'Fira Sans';
+}
+
+#searchBoxCont>input[type=search]::-webkit-search-cancel-button{
+    display: none;
+}
+
+#searchBoxCont>input[type=search]:focus{
+    outline: none;
+}
+
+#searchBoxCont>div{
+    width: 56px;
+    height: 56px;
+    float: right;
+    background-color:#fec10b;
+    margin: 7px;
+    border-radius: 5px;
+    padding: 7px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+#searchBoxCont>div>i{
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/go.png');
+    background-size: 100% 100%;
+    transition-duration: 0.2s;
+}
+
+#searchBoxCont>div>i.loading{
+    background-image: url('../images/loading.gif');
+    background-size: 50% 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#searchBoxCont>div:active{
+    transform: scale(0.95);
+    transition-duration: 0.2s;
+}
+
+/* footer */
+
+#wrapper>footer{
+    width: 100%;
+    max-width: 420px;
+    height: 40px;
+    position: absolute;
+    left:0px;
+    right: 0px;
+    bottom: 0px;
+    margin: auto;
+    padding: 0px 20px;
+    box-sizing: border-box;
+}
+
+#wrapper>footer>ul{
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+    height: 20px;
+}
+
+#wrapper>footer>ul>li{
+    float: left;
+    margin-left: 25px;
+}
+
+#wrapper>footer>ul>li:first-of-type{
+    list-style-type: none;
+    margin-left: 0px;
+}
+
+#wrapper>footer>ul>li>a{
+    text-decoration: none;
+    color:rgb(90, 90, 90);
+}
 
 /*progress bar*/
 
