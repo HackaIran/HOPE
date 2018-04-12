@@ -23,13 +23,13 @@ class Test {
 
         // onclick search Button
 
-        let searchBtn = document.querySelector("#searchBoxCont>div");
+        let searchBtn = $$("#searchBoxCont>div");
 
         searchBtn.onclick = () => {
 
             // Let's validate the url
 
-            let url = document.querySelector("#searchBoxCont>input[type=search]").value;
+            let url = $$("#searchBoxCont>input[type=search]").value;
 
             let urlRegex = /^(?:http|https):\/\/github\.com\/([\w-]+?)\/([\w-]+?)(?:\.git|)$/i;
 
@@ -45,17 +45,36 @@ class Test {
             searchBtn.querySelector("i").classList.add("loading");
 
             this.preInitiateTest(url).then((uniqueName, repositoryName) => {
-                this.pjax.navigate('result/' + uniqueName, "HOPE - Result of " + repositoryName);
 
-                this.pjax.appenPatial('/result/' + uniqueName);
+                $$("#searchBarCont").style.opacity = 0;
 
-                this.getResult(uniqueName).then((result) => {
+                setTimeout(() => {
 
-                    result = result.data;
+                    this.pjax.navigate('result/' + uniqueName, "HOPE | " + repositoryName);
 
-                    this.appendResult(result);
+                    this.pjax.appendPartial('/result/' + uniqueName).then(() => {
 
-                })
+                        setTimeout(() => {
+
+                            $$("#resultCont").style.opacity = 1;
+
+                            this.getResult(uniqueName).then((result) => {
+
+                                result = result.data;
+
+                                this.appendResult(result);
+
+                            })
+                        }, 500)
+                    });
+
+
+
+
+
+                }, 500);
+
+
             })
 
         }
@@ -74,7 +93,7 @@ class Test {
 
         return new Promise((resolve) => {
 
-            axios.post(window.location.origin+'/api/preInitialTest', {
+            axios.post(window.location.origin + '/api/preInitialTest', {
                 repositoryUrl: url
             }, {
                 headers: {
@@ -106,7 +125,7 @@ class Test {
 
     getResult(uniqueName) {
         return new Promise((resolve, reject) => {
-            axios.post(window.location.origin+'/api/initiateTest', {
+            axios.post(window.location.origin + '/api/initiateTest', {
                 uniqueName
             }, {
                 headers: {
@@ -201,7 +220,7 @@ class Test {
 
         $$(".resultSide:nth-of-type(2)>h2>span.highlight").textContent = repositoryName;
 
-        
+
 
     }
 

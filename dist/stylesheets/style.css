@@ -35,6 +35,7 @@
     right: 0px;
     bottom: 0px;
     margin: auto;
+    transition-duration: 0.5s;
 }
 
 #searchBarCont>h1{
@@ -128,6 +129,7 @@
     padding-bottom: 55px;
     margin: auto;
     box-sizing: border-box;
+    transition-duration: 0.5s;
 }
 
 .resultSide{

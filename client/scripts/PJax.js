@@ -27,22 +27,29 @@ class PJax {
      * 
      */
 
-    appenPatial(url) {
+    appendPartial(url) {
+        return new Promise((resolve, reject) => {
 
-        document.dispatchEvent(new Event("pjax:start"));
+            document.dispatchEvent(new Event("pjax:start"));
 
-        axios.get(window.location.origin+url, {
-            headers: { 'X-pjax': 'true' }
-        }).then((result) => {
-            this.wrapperElem.innerHTML = result.data;
-            // execute scripts
-            let codes =this.wrapperElem.getElementsByTagName("script");
-            for (let i = 0; i < codes.length; i++) {
-                eval(codes[i].text);
-            }
+            axios.get(window.location.origin + url, {
+                headers: {
+                    'X-pjax': 'true'
+                }
+            }).then((result) => {
+                this.wrapperElem.innerHTML = result.data;
+                // execute scripts
+                let codes = this.wrapperElem.getElementsByTagName("script");
+                for (let i = 0; i < codes.length; i++) {
+                    eval(codes[i].text);
+                }
+                resolve();
+            })
+
+            document.dispatchEvent(new Event("pjax:end"));
+
         })
 
-        document.dispatchEvent(new Event("pjax:end"));
 
     }
 
@@ -57,7 +64,7 @@ class PJax {
      */
 
     navigate(url, title) {
-        history.pushState({}, title, window.location.origin+"/"+url);
+        history.pushState({}, title, window.location.origin + "/" + url);
         document.title = title;
     }
 
@@ -71,12 +78,12 @@ class PJax {
 
     backOrForward(e) {
 
-        if(/\/result\/.+/.test(e.path[0].location.pathname)){// if the result page is requested
+        if (/\/result\/.+/.test(e.path[0].location.pathname)) { // if the result page is requested
             window.location.reload();
             return false;
         }
 
-        this.appenPatial(e.path[0].location.pathname)
+        this.appendPartial(e.path[0].location.pathname)
     }
 
 }

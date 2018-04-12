@@ -1,5 +1,5 @@
 block content
-  #resultCont
+  #resultCont(style="opacity:0;")
     .resultSide
       .loadingOverlay
           .spinner
@@ -26,6 +26,14 @@ block content
         span  Tips:
       #tipsCont.blur
         #tipsSlideCont
+  footer
+    ul
+      li
+        a(href="#") What is HackaIran?
+      li
+        a(href="#") HackaIran
+      li
+        a(href="#") HOPE in GitHub
 block script
   script.
     window.test.inititaEvents();
