@@ -36,7 +36,7 @@ const resultSchema = db.Schema({
 
 resultSchema.statics.calculateScoreProps = function (result) {
     
-    let score = result.quality;
+    let score = result.mark;
 
     let scoreText;
 
