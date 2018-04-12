@@ -3,30 +3,26 @@ extends layout
 block content
   #resultCont
     .resultSide
-      .loadingOverlay
-          .spinner
       h1 HOPE.
       h4 [H]ackademy [O]pen-Source [P]rojects [E]valuator
       #searchBoxCont
         input(type="search",placeholder="Ex.https://github.com/HackaIran/HOPE")
         div
           i
-      #scoreResultCont.blur
+      #scoreResultCont
         div
           span.highlight "HackaPanel"
           span  Health:
         div#scoreCont
-          div#scoreText.green Good
-          span#score.green 68
+          div#scoreText.green #{data.scoreText}
+          span#score.green #{mark}
           span /100
 
     .resultSide
-      .loadingOverlay
-        .spinner
       h2
         span.highlight "HackaPanel"
         span  Tips:
-      #tipsCont.blur
+      #tipsCont
         #tipsSlideCont
           
 block script

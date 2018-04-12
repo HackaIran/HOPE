@@ -106,36 +106,15 @@ class Test {
 
     appendResult(data){
 
-        let score = data.quality;
+        console.log(data)
 
-        let scoreText;
+        $$("#scoreText").innerText = data.scoreText;
 
-        let scoreColor;
+        $$("#score").innerText = data.quality;
 
-        if(score <= 20){
-            scoreText = "Try a Little More;)";
-            scoreColor = "red";
-        }else if(score <= 40 && score > 20){
-            scoreText = "I'm Sure That You Can Do Better;)";
-            scoreColor = "lightRed";
-        }else if(score<= 60 && score> 40){
-            scoreText = "Good But it Can Become Better";
-            scoreColor = "orange";
-        }else if(score> 60 && score<=80){
-            scoreText = "Very Good:)";
-            scoreColor = "lightGreen";
-        }else{
-            scoreText = "Excellent! You Are The Symbol of Open Source!:)";
-            scoreColor = "green";
-        }
+        $$("#score").classList = data.scoreColor;
 
-        $$("#scoreText").innerText = scoreText;
-
-        $$("#score").innerText = score;
-
-        $$("#score").classList = scoreColor;
-
-        $$("#scoreText").classList = scoreColor;
+        $$("#scoreText").classList = data.scoreColor;
 
         // hide score section loading
 
