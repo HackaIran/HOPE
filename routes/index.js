@@ -3,7 +3,13 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'HOPE' });
+  let pjax = req.get("x-pjax");
+
+  if(pjax){
+    res.render('index-partial',{title:'HOPE'});
+  }else{
+    res.render('index',{title:'HOPE'});
+  }
 });
 
 router.get('/result/:uniqueName',function(req,res){

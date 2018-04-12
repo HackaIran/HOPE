@@ -8,6 +8,8 @@ const loading = new ProgressBar();
 
 const test = new Test();
 
+window.test = test;
+
 //
 
 // show loading

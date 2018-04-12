@@ -14,8 +14,6 @@ class Loading{
 
         clearInterval(this.loadingInterval);
 
-        console.log(this.loadingElem)
-
         this.loadingElem.style.width = "100%";
 
         setTimeout(this._distructLoading,500);
@@ -36,7 +34,7 @@ class Loading{
     }
 
     _progress(){
-        if(parseInt(this.loadingElem.style.width) == 95){
+        if(parseInt(this.loadingElem.style.width) >= 95){
             clearInterval(this.loadingInterval)
         }else{
             this.loadingElem.style.width = parseInt(this.loadingElem.style.width) + 5 + "%";
