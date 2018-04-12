@@ -5,6 +5,11 @@ const resultSchema = db.Schema({
         required: true,
         type: String
     },
+    mark:{
+        type:Number,
+        default:-1,
+        required:true
+    },
     result:{
         type: [],
         required: false
@@ -16,9 +21,13 @@ const resultSchema = db.Schema({
     uniqueName:{
         required:true,
         type:String
+    },
+    done:{
+        type: Number,
+        default: 0
     }
 });
 
-const Result = db.model('results', sampleSchema);
+const Result = db.model('results', resultSchema);
 
 module.exports = Result;
