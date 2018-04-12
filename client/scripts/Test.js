@@ -75,6 +75,15 @@ class Test {
             this.pjax.navigate('result/'+uniqueName,"HOPE - Result of "+repositoryName);
 
             this.pjax.appenPatial('/result/'+uniqueName);
+
+            this.getResult(uniqueName).then((result)=>{
+
+                result = result.data;
+
+                this.appendResult(result);
+
+            })
+
         })
 
     }
@@ -88,6 +97,106 @@ class Test {
      */
 
     getResult(uniqueName){
+        return new Promise((resolve,reject)=>{
+            axios.post('/api/initiateTest',{uniqueName},{
+                headers:{'Content-type':'application/json'}
+            }).then(resolve)
+        })
+    }
+
+    appendResult(data){
+
+        let score = data.quality;
+
+        let scoreText;
+
+        let scoreColor;
+
+        if(score <= 20){
+            scoreText = "Try a Little More;)";
+            scoreColor = "red";
+        }else if(score <= 40 && score > 20){
+            scoreText = "I'm Sure That You Can Do Better;)";
+            scoreColor = "lightRed";
+        }else if(score<= 60 && score> 40){
+            scoreText = "Good But it Can Become Better";
+            scoreColor = "orange";
+        }else if(score> 60 && score<=80){
+            scoreText = "Very Good:)";
+            scoreColor = "lightGreen";
+        }else{
+            scoreText = "Excellent! You Are The Symbol of Open Source!:)";
+            scoreColor = "green";
+        }
+
+        $$("#scoreText").innerText = scoreText;
+
+        $$("#score").innerText = score;
+
+        $$("#score").classList = scoreColor;
+
+        $$("#scoreText").classList = scoreColor;
+
+        // hide score section loading
+
+        $$(".resultSide:first-of-type .blur").classList.remove('blur');
+
+        $$(".resultSide:first-of-type .loadingOverlay").style.display = "none";
+
+        // let's add tips
+
+        for(let tip of data.results){
+
+            let tipCont = document.createElement("div");
+            tipCont.classList.add("tip");
+
+            let status = document.createElement("i");
+            status.classList.add("tipType");
+            status.classList.add(tip.status.toLowerCase());
+
+            let fixIcon = document.createElement("a");
+            fixIcon.href = "#";
+            fixIcon.classList.add("tipFix");
+
+            let tipContent = document.createElement("div");
+            tipContent.classList.add("tipContent");
+
+            let tipHeading = document.createElement("div");
+            tipHeading.classList.add("tipHeading");
+            tipHeading.textContent = tip.type;
+
+            let tipHelp = document.createElement("a");
+            tipHelp.href = "#";
+            tipHelp.classList.add("tipHelp");
+
+            let tipText = document.createElement("div");
+            tipText.classList.add("tipText");
+            tipText.textContent = tip.message;
+
+            // appending
+
+            tipContent.appendChild(tipHeading);
+            tipContent.appendChild(tipHelp);
+            tipContent.appendChild(tipText);
+
+            tipCont.appendChild(status);
+            tipCont.appendChild(tipContent);
+            tipCont.appendChild(fixIcon);
+
+            let father = $$("#tipsSlideCont")
+            father.appendChild(tipCont)
+
+        }
+
+        // hideLoading
+
+        $$(".resultSide:last-of-type .blur").classList.remove('blur');
+
+        $$(".resultSide:last-of-type .loadingOverlay").style.display = "none";
+
+        // animate scroll
+
+        new window.ScrollAnimate();
 
     }
 

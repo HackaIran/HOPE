@@ -1,32 +1,28 @@
 block content
-  
-  .resultSides
-    h1 HOPE.
-    h4 [H]ackademy [O]pen-Source [P]rojects [E]valuator
-    #searchBoxCont
-      input(type="search",placeholder="Ex.https://github.com/HackaIran/HOPE")
-      div
-        i
-    #scoreResultCont
-      div
-        span.highlight "sth"
-        span Health is:
-      div#scoreText
-      div#scoreCont
-        span#score
-        span
+  #resultCont
+    .resultSide
+      .loadingOverlay
+          .spinner
+      h1 HOPE.
+      h4 [H]ackademy [O]pen-Source [P]rojects [E]valuator
+      #searchBoxCont
+        input(type="search",placeholder="Ex.https://github.com/HackaIran/HOPE")
+        div
+          i
+      #scoreResultCont.blur
+        div
+          span.highlight "HackaPanel"
+          span  Health:
+        div#scoreCont
+          div#scoreText.green Good
+          span#score.green 68
+          span /100
 
-  .resultSide
-    h2
-      span.highlight "sth"
-      span tips:
-    #tipsCont
-      .tip
-        .tipHeading some heading
-          a.tipHelp(href="#")
-          a.tipFix(href="#")
-          i.tipType
-        .tipContent some text goes here
-
-
-
+    .resultSide
+      .loadingOverlay
+        .spinner
+      h2
+        span.highlight "HackaPanel"
+        span  Tips:
+      #tipsCont.blur
+        #tipsSlideCont

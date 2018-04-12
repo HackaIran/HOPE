@@ -1,3 +1,8 @@
+window.$$ =(selector)=>{
+    return document.querySelector(selector);
+}
+//
+
 const ProgressBar = require("./scripts/ProgressBar");
 
 const Test = require("./scripts/Test");

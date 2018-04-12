@@ -208,7 +208,7 @@
 #scoreText{
     font-size: 70px;
     text-align: center;
-    height: 80px;
+    min-height: 80px;
     padding: 20px 0px;
     width: 100%;
     font-weight: bold;
@@ -235,6 +235,14 @@
 
 .red{
     color:red;
+}
+
+.lightRed{
+    color:rgb(141, 66, 66);
+}
+
+.lightGreen{
+    color:lightgreen;
 }
 
 /* tips */
@@ -268,7 +276,7 @@
 
 .tipHeading{
     width: 100%;
-    height: 50px;
+    min-height: 50px;
     line-height: 50px;
     font-size: 30px;
     font-weight: bold;
