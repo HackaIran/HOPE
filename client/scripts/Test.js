@@ -51,7 +51,7 @@ class Test {
 
         let repositoryUrl = $$('#searchBoxCont>input[type=search]').value;
 
-        let repositoryUrlRegex = /^(?:http|https):\/\/github\.com\/([\w-]+?)\/([\w-]+?)(?:\.git|)$/i;
+        let repositoryUrlRegex = /^(?:http|https):\/\/github\.com\/([\w-.]+?)\/([\w-.]+?)(?:\.git|)$/i;
 
         if (!repositoryUrl || !repositoryUrlRegex.test(repositoryUrl)) {
 
@@ -197,6 +197,12 @@ class Test {
         // set name of the repository
 
         let repositoryName = data.repositoryUrl.split('/').pop();
+
+        // if .git url
+
+        if(/^(.+)\.git$/i.test(repositoryName)){
+            repositoryName = /^(.+)\.git$/i.exec(repositoryName)[1];
+        }
 
         $$('#scoreResultCont>div:first-of-type>span.highlight').textContent = repositoryName;
 
