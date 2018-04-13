@@ -17,14 +17,6 @@ const resultSchema = db.Schema({
     time: {
         type: Date,
         default: Date.now()
-    },
-    uniqueName: {
-        required: true,
-        type: String
-    },
-    done: {
-        type: Number,
-        default: 0
     }
 });
 
