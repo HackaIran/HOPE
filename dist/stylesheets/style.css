@@ -55,6 +55,12 @@ body {
     opacity: 1;
 }
 
+.none{
+    opacity: 0;
+    pointer-events: none;
+    transition-duration: 0.2s;
+}
+
 /* index */
 
 #searchBarCont {
@@ -322,11 +328,51 @@ body {
     width: 100%;
     height: calc(100% - 100px);
     overflow-y: hidden;
+    position: relative;
+}
+
+.tipBlur{
+    height: 150px;
+    width: calc(100% - 5px);
+    pointer-events: none;
+    transition-duration: 0.2s;
+}
+
+#tipTopBlur{
+    position: absolute;
+    top: 0px;
+    background: linear-gradient(to bottom, black, transparent);
+    z-index: 1;
+}
+
+#tipBottomBlur{
+    position: absolute;
+    bottom: 0px;
+    background: linear-gradient(to top, black, transparent);
+    z-index: 1;
 }
 
 #tipsSlideCont{
-    transition-duration: 0.5s;
+    overflow-y: scroll;
+    height: 100%;
 }
+
+/* scrollbar styles */
+
+#tipsSlideCont::-webkit-scrollbar {
+    width: 5px;
+}
+ 
+#tipsSlideCont::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+#tipsSlideCont::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
+/* end of scrollbar styles */
 
 .tip{
     width: 100%;

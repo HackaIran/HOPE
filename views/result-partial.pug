@@ -27,9 +27,33 @@ block content
         span.highlight ""
         span  tips:
       #tipsCont.blur
+        #tipBottomBlur.tipBlur
+        #tipTopBlur.tipBlur.none
         #tipsSlideCont
   
 
 block script
   script.
     window.test.initiateEvents();
+  //- scroll
+  script.
+    $$('#tipsSlideCont').onscroll = ()=>{
+      let tips = document.querySelectorAll('.tip');
+      let tipsHeight = 0;
+      tips.forEach((tip)=>{
+        tipsHeight += tip.offsetHeight + 10;
+      })
+
+      if($$('#tipsSlideCont').scrollTop == 0){
+        $$('#tipTopBlur').classList.add('none');
+      }else{
+        $$('#tipTopBlur').classList.remove('none');
+      }
+      console.log(tipsHeight,$$('#tipsSlideCont').scrollTop)
+      if (($$('#tipsSlideCont').offsetHeight + $$('#tipsSlideCont').scrollTop) >= tipsHeight) {
+        $$('#tipBottomBlur').classList.add('none');
+      }else{
+        $$('#tipBottomBlur').classList.remove('none');
+      }
+      
+    }

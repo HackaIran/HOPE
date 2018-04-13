@@ -174,11 +174,6 @@ class Test {
         $$('.resultSide:last-of-type .loadingOverlay').style.display = 'none';
 
         $$('.resultSide:last-of-type .blur').classList.remove('blur');
-
-        // animate scroll
-
-        new window.ScrollAnimate();
-
         // set name of the repository
 
         let repositoryName = data.repositoryUrl.split('/').pop();

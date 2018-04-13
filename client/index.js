@@ -7,15 +7,11 @@ const ProgressBar = require('./scripts/ProgressBar');
 
 const Test = require('./scripts/Test');
 
-const ScrollAnimate = require('./scripts/ScrollAnimate');
-
 //
 
 const loading = new ProgressBar();
 
 window.test = new Test();
-
-window.ScrollAnimate = ScrollAnimate;
 
 //
 
