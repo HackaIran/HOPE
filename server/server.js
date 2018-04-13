@@ -19,17 +19,10 @@ class Server {
 
 }
 
-const names = ['Bear', 'Lion', 'Chicken', 'Whale', 'Fish'];
-
 const onUserConnected = socket => {
-    const name = names[Math.floor(names.length * Math.random())]
-    socket.on('pong client', message => {
-        console.log(message);
-        setTimeout(() => {
-            socket.emit('ping server', `Ping from ${name}`);
-        }, 2000);
-    });
+    
 };
+
 const server = new Server;
 
 module.exports = server;
