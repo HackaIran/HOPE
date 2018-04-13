@@ -157,6 +157,9 @@ class Test {
             let fixIcon = document.createElement('a');
             fixIcon.href = '#';
             fixIcon.classList.add('tipFix');
+            
+            // temprorary
+            fixIcon.classList.add('soon');
 
             let tipContent = document.createElement('div');
             tipContent.classList.add('tipContent');
