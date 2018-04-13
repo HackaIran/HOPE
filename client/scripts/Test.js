@@ -26,45 +26,64 @@ class Test {
 
         let searchBtn = $$('#searchBoxCont>div');
 
+        document.onkeydown = (e)=>{
+            if(e.key.toLocaleLowerCase() == 'enter'){
+                this.processEvaluation();
+            }
+        }
+
         searchBtn.onclick = () => {
 
-            // Let's validate the url
+            this.processEvaluation();
+            
+        }
 
-            let repositoryUrl = $$('#searchBoxCont>input[type=search]').value;
+    }
 
-            let repositoryUrlRegex = /^(?:http|https):\/\/github\.com\/([\w-]+?)\/([\w-]+?)(?:\.git|)$/i;
+    /**
+     * 
+     * @description processes the process of evaluation
+     * 
+     */
 
-            if (!repositoryUrl || !repositoryUrlRegex.test(repositoryUrl)) {
+    processEvaluation(){
+        // Let's validate the url
 
-                //error
-                return;
+        let repositoryUrl = $$('#searchBoxCont>input[type=search]').value;
 
-            }
+        let repositoryUrlRegex = /^(?:http|https):\/\/github\.com\/([\w-]+?)\/([\w-]+?)(?:\.git|)$/i;
 
-            let regResult = repositoryUrlRegex.exec(repositoryUrl);
+        if (!repositoryUrl || !repositoryUrlRegex.test(repositoryUrl)) {
 
-            let repositoryName = regResult[2];
-
-            searchBtn.style.opacity = 0.5;
-            searchBtn.style.pointerEvents = 'none';
-            searchBtn.querySelector('i').classList.add('loading');
-
-            this.evaluate(repositoryUrl).then((result) => {
-
-                this.pjax.navigate('evaluate?url=' + repositoryUrl, 'HOPE | Result of ' + repositoryName);
-
-                this.pjax.appendPartial('/evaluate?url=' + repositoryUrl).then(() => {
-                    
-                    result.repositoryUrl = repositoryUrl;
-
-                    this.appendResult(result);
-
-                });
-
-
-            })
+            //error
+            return;
 
         }
+
+        let regResult = repositoryUrlRegex.exec(repositoryUrl);
+
+        let repositoryName = regResult[2];
+
+        let searchBtn = $$('#searchBoxCont>div');
+
+        searchBtn.style.opacity = 0.5;
+        searchBtn.style.pointerEvents = 'none';
+        searchBtn.querySelector('i').classList.add('loading');
+
+        this.evaluate(repositoryUrl).then((result) => {
+
+            this.pjax.navigate('evaluate?url=' + repositoryUrl, 'HOPE | Result of ' + repositoryName);
+
+            this.pjax.appendPartial('/evaluate?url=' + repositoryUrl).then(() => {
+                
+                result.repositoryUrl = repositoryUrl;
+
+                this.appendResult(result);
+
+            });
+
+
+        })
 
     }
 
