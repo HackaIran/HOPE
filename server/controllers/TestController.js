@@ -48,7 +48,7 @@ class TestController {
 
     calculateProps(result) {
         
-        let score = result.mark;
+        let score = result.quality;
 
         let scoreText;
 
