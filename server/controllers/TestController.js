@@ -23,7 +23,7 @@ class TestController {
                     let newResult = new Result({
                         repositoryUrl,
                         mark: result.quality,
-                        result: result.result
+                        result: result.results
                     });
 
                     newResult.save().then(()=>{
