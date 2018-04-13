@@ -20,7 +20,7 @@ class Test {
      * 
      */
 
-    inititaEvents() {
+    initiateEvents() {
 
         // onclick search Button
 
@@ -30,34 +30,35 @@ class Test {
 
             // Let's validate the url
 
-            let url = $$('#searchBoxCont>input[type=search]').value;
+            let repositoryUrl = $$('#searchBoxCont>input[type=search]').value;
 
-            let urlRegex = /^(?:http|https):\/\/github\.com\/([\w-]+?)\/([\w-]+?)(?:\.git|)$/i;
+            let repositoryUrlRegex = /^(?:http|https):\/\/github\.com\/([\w-]+?)\/([\w-]+?)(?:\.git|)$/i;
 
-            if (!url || !urlRegex.test(url)) {
+            if (!repositoryUrl || !repositoryUrlRegex.test(repositoryUrl)) {
 
                 //error
                 return;
 
             }
 
+            let regResult = repositoryUrlRegex.exec(repositoryUrl);
+
+            let repositoryName = regResult[2];
+
             searchBtn.style.opacity = 0.5;
             searchBtn.style.pointerEvents = 'none';
             searchBtn.querySelector('i').classList.add('loading');
 
-            this.preInitiateTest(url).then((uniqueName, repositoryName) => {
+            this.evaluate(repositoryUrl).then((result) => {
 
-                this.pjax.navigate('result/' + uniqueName, 'HOPE | ' + repositoryName);
+                this.pjax.navigate('evaluate?url=' + repositoryUrl, 'HOPE | Result of ' + repositoryName);
 
-                this.pjax.appendPartial('/result/' + uniqueName).then(() => {
+                this.pjax.appendPartial('/evaluate?url=' + repositoryUrl).then(() => {
+                    
+                    result.repositoryUrl = repositoryUrl;
 
-                    this.getResult(uniqueName).then((result) => {
+                    this.appendResult(result);
 
-                        result = result.data;
-
-                        this.appendResult(result);
-
-                    })
                 });
 
 
@@ -69,17 +70,17 @@ class Test {
 
     /**
      * 
-     * @description send a request to server to get a unique name for the test
+     * @description send a request to server to evaluate the repository
      * 
      * @param {String} url - repositoryUrl
      * 
      */
 
-    preInitiateTest(url) {
+    evaluate(url) {
 
         return new Promise((resolve) => {
 
-            axios.post(window.location.origin + '/api/preInitialTest', {
+            axios.post(window.location.origin + '/api/evaluate', {
                 repositoryUrl: url
             }, {
                 headers: {
@@ -87,15 +88,7 @@ class Test {
                 }
             }).then((result) => {
 
-                let uniqueName = result.data.uniqueName;
-
-                let repositoryName = uniqueName.split('-');
-
-                repositoryName.pop();
-
-                repositoryName = repositoryName.join(' ');
-
-                resolve(uniqueName, repositoryName)
+                resolve(result.data);
 
             })
         })
@@ -103,23 +96,9 @@ class Test {
 
     /**
      * 
-     * @description gets the result of the test
      * 
-     * @param {String} uniqueName - the unique name that we got from the initialTest
      * 
      */
-
-    getResult(uniqueName) {
-        return new Promise((resolve, reject) => {
-            axios.post(window.location.origin + '/api/initiateTest', {
-                uniqueName
-            }, {
-                headers: {
-                    'Content-type': 'application/json'
-                }
-            }).then(resolve)
-        })
-    }
 
     appendResult(data) {
 
@@ -131,7 +110,7 @@ class Test {
 
         $$('#scoreText').innerText = data.scoreText;
 
-        $$('#score').innerText = data.mark;
+        $$('#score').innerText = data.quality;
 
         $$('#score').classList = data.scoreColor;
 
@@ -145,7 +124,7 @@ class Test {
 
         // let's add tips
 
-        for (let tip of data.result) {
+        for (let tip of data.results) {
 
             let tipCont = document.createElement('div');
             tipCont.classList.add('tip');
@@ -157,9 +136,6 @@ class Test {
             let fixIcon = document.createElement('a');
             fixIcon.href = '#';
             fixIcon.classList.add('tipFix');
-            
-            // temprorary
-            fixIcon.classList.add('soon');
 
             let tipContent = document.createElement('div');
             tipContent.classList.add('tipContent');

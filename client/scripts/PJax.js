@@ -34,11 +34,11 @@ class PJax {
             document.dispatchEvent(new Event("pjax:start"));
 
             // let's fade out current content
-
+            console.log(window.location.origin + url)
             $$(".pjaxFadeItem").style.opacity = 0;
 
             setTimeout(()=>{
-
+                
                 axios.get(window.location.origin + url, {
                     headers: {
                         'X-pjax': 'true'
@@ -50,10 +50,6 @@ class PJax {
                     for (let i = 0; i < codes.length; i++) {
                         eval(codes[i].text);
                     }
-
-                    
-
-                    
 
                     setTimeout(()=>{
 
@@ -106,7 +102,7 @@ class PJax {
 
     backOrForward(e) {
 
-        if (/\/result\/.+/.test(e.path[0].location.pathname)) { // if the result page is requested
+        if (/\/evaluate/i.test(e.path[0].location.pathname)) { // if the result page is requested
             window.location.reload();
             return false;
         }

@@ -3,40 +3,44 @@ extends layout
 block content
   #resultCont.pjaxFadeItem.pjaxFadedIn
     .resultSide
+      .loadingOverlay
+          .spinner
       .hidden
         h1 HOPE.
         h4 [H]ackademy [O]pen-Source [P]rojects [E]valuator
       img(class='title-image', src='/images/title.png')
       #searchBoxCont
-        input(type="search", placeholder="Ex. https://github.com/HackaIran/HOPE",value=data.repositoryUrl)
+        input(type='search', placeholder='Ex.https://github.com/HackaIran/HOPE')
         div
           i
-      #scoreResultCont
+      #scoreResultCont.blur
         div
-          span.highlight "#{data.repositoryUrl.split('/').pop()}"
+          span.highlight ""
           span  Health:
         div#scoreCont
-          div#scoreText(class=data.scoreColor) #{data.scoreText}
-          span#score(class=data.scoreColor) #{mark}
+          div#scoreText.green Normal
+          span#score.green 0
           span /100
 
     .resultSide
-      h2
-        span.highlight "#{data.repositoryUrl.split('/').pop()}"
-        span  Tips:
-      #tipsCont
+      .loadingOverlay
+        .spinner
+      h2.blur
+        span.highlight ""
+        span  tips:
+      #tipsCont.blur
         #tipsSlideCont
-          each val,index in data.result
-            .tip
-              i.tipType(class=val.status.toLowerCase())
-              .tipContent
-                .tipHeading
-                  = val.type
-                a.tipHelp(href="#")
-                .tipText 
-                  = val.message
-              a.tipFix.soon(href="#")
+
 block script
   script.
     let scrollAnimate = new window.ScrollAnimate();
-    window.test.inititaEvents();
+
+    window.test.initiateEvents();
+
+    window.test.evaluate(window.getParameterByName('url')).then((result)=>{
+      
+      result.repositoryUrl = window.getParameterByName('url');
+
+      window.test.appendResult(result);
+
+    })

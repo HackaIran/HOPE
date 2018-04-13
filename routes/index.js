@@ -12,39 +12,45 @@ const testController = new TestController();
 //
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  
+router.get('/', function (req, res, next) {
+
   let pjax = req.get("x-pjax");
 
-  if(pjax){
+  if (pjax) {
 
-    res.render('index-partial',{title:'HOPE'});
+    res.render('index-partial', {
+      title: 'HOPE'
+    });
 
-  }else{
+  } else {
 
-    res.render('index',{title:'HOPE'});
+    res.render('index', {
+      title: 'HOPE'
+    });
 
   }
 });
 
-router.get('/result/:uniqueName',function(req,res){
+router.get('/evaluate', function (req, res) {
+
+  // check if url is set
+
+  if (!req.query.url) {
+    res.status(404).send();
+  }
 
   let pjax = req.get("x-pjax");
 
-  if(pjax){
+  if (pjax) {
 
-    res.render('result-partial',{title:'HOPE'});
+    res.render('result-partial');
 
-  }else{
-    testController.getTest(req.params.uniqueName).then((result)=>{
-      res.render('result',{title:'HOPE | '+result.uniqueName,mark:result.mark,data:result});
-    }).catch((e)=>{
-      console.log(e)
-    })
-
+  } else {
     
+    res.render('result');
+
   }
-  
+
 
 });
 

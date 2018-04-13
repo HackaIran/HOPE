@@ -3,7 +3,7 @@ const Result = require('../model/Result');
 
 class TestController {
 
-    preInitialTest(repositoryUrl) {
+    test(repositoryUrl){
 
         return new Promise((resolve, reject) => {
             let urlRegex = /^(?:http|https):\/\/github\.com\/([\w-]+?)\/([\w-]+?)(?:\.git|)$/i;
@@ -16,16 +16,25 @@ class TestController {
 
                 let repositoryName = regResult[2];
 
-                let uniqueName = repositoryName + "-" + repositoryOwner + "-" + Date.now();
+                githubHope.evaluate(repositoryUrl).then((result)=>{
 
-                let newTest = new Result({
-                    repositoryUrl,
-                    uniqueName
-                });
+                    // let's add it to DB
 
-                newTest.save().then((r) => {
-                    resolve(r);
-                });
+                    let newResult = new Result({
+                        repositoryUrl,
+                        mark: result.quality,
+                        result: result.result
+                    });
+
+                    newResult.save().then(()=>{
+
+                        result = this.calculateProps(result);
+
+                        resolve(result);
+
+                    });
+
+                }).catch(reject)
 
             } else {
                 // error
@@ -34,48 +43,7 @@ class TestController {
 
             }
         })
-    }
 
-    initialTest(uniqueName) {
-
-        return new Promise((resolve, reject) => {
-
-            Result.findOne({
-                uniqueName
-            }).then((document) => {
-
-                githubHope.evaluate(document.repositoryUrl).then((result) => {
-
-                    Result.findOneAndUpdate({
-                        uniqueName
-                    }, {
-                        mark: result.quality,
-                        result: result.results,
-                        done: 1
-                    }, {
-                        new: true
-                    }).then((result) => {
-                        result = this.calculateProps(result);
-                        resolve(result);
-
-                    });
-
-                })
-
-            });
-
-        })
-
-    }
-
-    getTest(uniqueName) {
-        return new Promise((resolve,reject)=>{
-            Result.findOne({uniqueName}).then((result)=>{
-                result = this.calculateProps(result);
-                resolve(result);
-            }).catch(reject);
-        })
-        
     }
 
     calculateProps(result) {
@@ -103,11 +71,11 @@ class TestController {
             scoreColor = "green";
         }
 
-        result._doc.scoreText = scoreText;
+        result.scoreText = scoreText;
 
-        result._doc.scoreColor = scoreColor;
+        result.scoreColor = scoreColor;
 
-        return result._doc;
+        return result;
 
     }
 
