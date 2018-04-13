@@ -19,3 +19,16 @@
         width: 100%;
     }
 }
+
+@media screen and (max-height: 680px) {
+    body {
+        overflow-y: auto;
+    }
+    #wrapper {
+        position: absolute;
+    }
+    footer {
+        top: 605px;
+        bottom: auto;
+    }
+}
