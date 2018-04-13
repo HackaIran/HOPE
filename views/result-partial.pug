@@ -6,7 +6,7 @@ block content
       .hidden
         h1 HOPE.
         h4 [H]ackademy [O]pen-Source [P]rojects [E]valuator
-      img(src='/images/title.png')
+      img(class='title-image', src='/images/title.png')
       #searchBoxCont
         input(type='search',placeholder='Ex.https://github.com/HackaIran/HOPE')
         div
@@ -28,14 +28,8 @@ block content
         span  Tips:
       #tipsCont.blur
         #tipsSlideCont
-  footer
-    ul
-      li
-        a(href='#') What is HackaIran?
-      li
-        a(href='#') HackaIran
-      li
-        a(href='#') HOPE in GitHub
+  
+
 block script
   script.
     window.test.inititaEvents();

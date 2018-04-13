@@ -46,7 +46,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -60%);
+    transform: translate(-50%, -57%);
     margin: auto;
     transition-duration: 0.5s;
 }

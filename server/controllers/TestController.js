@@ -87,19 +87,19 @@ class TestController {
         let scoreColor;
 
         if (score <= 20) {
-            scoreText = "Try a Little More;)";
+            scoreText = "Bad";
             scoreColor = "red";
         } else if (score <= 40 && score > 20) {
-            scoreText = "I'm Sure That You Can Do Better;)";
+            scoreText = "Not Bad";
             scoreColor = "lightRed";
         } else if (score <= 60 && score > 40) {
-            scoreText = "Good But it Can Become Better";
+            scoreText = "OK";
             scoreColor = "orange";
         } else if (score > 60 && score <= 80) {
-            scoreText = "Very Good:)";
+            scoreText = "Good";
             scoreColor = "lightGreen";
         } else {
-            scoreText = "Excellent!";
+            scoreText = "Excellent";
             scoreColor = "green";
         }
 
