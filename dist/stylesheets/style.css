@@ -10,6 +10,18 @@
     height: 100%;
 }
 
+.hidden {
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.title-image {
+    width: 70%
+}
+
 /* globals */
 
 .highlight{

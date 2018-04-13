@@ -1,17 +1,19 @@
 block content
-  #resultCont(style="opacity:0;")
+  #resultCont(style='opacity:0;')
     .resultSide
       .loadingOverlay
           .spinner
-      h1 HOPE.
-      h4 [H]ackademy [O]pen-Source [P]rojects [E]valuator
+      .hidden
+        h1 HOPE.
+        h4 [H]ackademy [O]pen-Source [P]rojects [E]valuator
+      img(src='/images/title.png')
       #searchBoxCont
-        input(type="search",placeholder="Ex.https://github.com/HackaIran/HOPE")
+        input(type='search',placeholder='Ex.https://github.com/HackaIran/HOPE')
         div
           i
       #scoreResultCont.blur
         div
-          span.highlight "HackaPanel"
+          span.highlight 'HackaPanel'
           span  Health:
         div#scoreCont
           div#scoreText.green Good
@@ -22,18 +24,18 @@ block content
       .loadingOverlay
         .spinner
       h2.blur
-        span.highlight "HackaPanel"
+        span.highlight 'HackaPanel'
         span  Tips:
       #tipsCont.blur
         #tipsSlideCont
   footer
     ul
       li
-        a(href="#") What is HackaIran?
+        a(href='#') What is HackaIran?
       li
-        a(href="#") HackaIran
+        a(href='#') HackaIran
       li
-        a(href="#") HOPE in GitHub
+        a(href='#') HOPE in GitHub
 block script
   script.
     window.test.inititaEvents();

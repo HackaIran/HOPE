@@ -3,9 +3,9 @@ window.$$ =(selector)=>{
 }
 //
 
-const ProgressBar = require("./scripts/ProgressBar");
+const ProgressBar = require('./scripts/ProgressBar');
 
-const Test = require("./scripts/Test");
+const Test = require('./scripts/Test');
 
 const ScrollAnimate = require('./scripts/ScrollAnimate');
 
@@ -25,11 +25,11 @@ loading.showLoading();
 
 // add loading's events
 
-document.addEventListener("pjax:start",()=>{
+document.addEventListener('pjax:start',()=>{
     loading.showLoading();
 })
 
-document.addEventListener("pjax:end",()=>{
+document.addEventListener('pjax:end',()=>{
     loading.hideLoading();
 })
 

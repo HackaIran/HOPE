@@ -1,4 +1,4 @@
-const axios = require("axios");
+const axios = require('axios');
 
 const PJax = require('./PJax');
 
@@ -11,7 +11,7 @@ class Test {
      */
 
     constructor() {
-        this.pjax = new PJax("wrapper");
+        this.pjax = new PJax('wrapper');
     }
 
     /**
@@ -24,13 +24,13 @@ class Test {
 
         // onclick search Button
 
-        let searchBtn = $$("#searchBoxCont>div");
+        let searchBtn = $$('#searchBoxCont>div');
 
         searchBtn.onclick = () => {
 
             // Let's validate the url
 
-            let url = $$("#searchBoxCont>input[type=search]").value;
+            let url = $$('#searchBoxCont>input[type=search]').value;
 
             let urlRegex = /^(?:http|https):\/\/github\.com\/([\w-]+?)\/([\w-]+?)(?:\.git|)$/i;
 
@@ -42,22 +42,22 @@ class Test {
             }
 
             searchBtn.style.opacity = 0.5;
-            searchBtn.style.pointerEvents = "none";
-            searchBtn.querySelector("i").classList.add("loading");
+            searchBtn.style.pointerEvents = 'none';
+            searchBtn.querySelector('i').classList.add('loading');
 
             this.preInitiateTest(url).then((uniqueName, repositoryName) => {
 
-                $$("#searchBarCont").style.opacity = 0;
+                $$('#searchBarCont').style.opacity = 0;
 
                 setTimeout(() => {
 
-                    this.pjax.navigate('result/' + uniqueName, "HOPE | " + repositoryName);
+                    this.pjax.navigate('result/' + uniqueName, 'HOPE | ' + repositoryName);
 
                     this.pjax.appendPartial('/result/' + uniqueName).then(() => {
 
                         setTimeout(() => {
 
-                            $$("#resultCont").style.opacity = 1;
+                            $$('#resultCont').style.opacity = 1;
 
                             this.getResult(uniqueName).then((result) => {
 
@@ -100,11 +100,11 @@ class Test {
 
                 let uniqueName = result.data.uniqueName;
 
-                let repositoryName = uniqueName.split("-");
+                let repositoryName = uniqueName.split('-');
 
                 repositoryName.pop();
 
-                repositoryName = repositoryName.join(" ");
+                repositoryName = repositoryName.join(' ');
 
                 resolve(uniqueName, repositoryName)
 
@@ -136,52 +136,52 @@ class Test {
 
         // change text of the search bar
 
-        $$("#searchBoxCont>input").value = data.repositoryUrl;
+        $$('#searchBoxCont>input').value = data.repositoryUrl;
 
         // change score props
 
-        $$("#scoreText").innerText = data.scoreText;
+        $$('#scoreText').innerText = data.scoreText;
 
-        $$("#score").innerText = data.mark;
+        $$('#score').innerText = data.mark;
 
-        $$("#score").classList = data.scoreColor;
+        $$('#score').classList = data.scoreColor;
 
-        $$("#scoreText").classList = data.scoreColor;
+        $$('#scoreText').classList = data.scoreColor;
 
         // hide score section loading
 
-        $$(".resultSide:first-of-type .blur").classList.remove('blur');
+        $$('.resultSide:first-of-type .blur').classList.remove('blur');
 
-        $$(".resultSide:first-of-type .loadingOverlay").style.display = "none";
+        $$('.resultSide:first-of-type .loadingOverlay').style.display = 'none';
 
         // let's add tips
 
         for (let tip of data.result) {
 
-            let tipCont = document.createElement("div");
-            tipCont.classList.add("tip");
+            let tipCont = document.createElement('div');
+            tipCont.classList.add('tip');
 
-            let status = document.createElement("i");
-            status.classList.add("tipType");
+            let status = document.createElement('i');
+            status.classList.add('tipType');
             status.classList.add(tip.status.toLowerCase());
 
-            let fixIcon = document.createElement("a");
-            fixIcon.href = "#";
-            fixIcon.classList.add("tipFix");
+            let fixIcon = document.createElement('a');
+            fixIcon.href = '#';
+            fixIcon.classList.add('tipFix');
 
-            let tipContent = document.createElement("div");
-            tipContent.classList.add("tipContent");
+            let tipContent = document.createElement('div');
+            tipContent.classList.add('tipContent');
 
-            let tipHeading = document.createElement("div");
-            tipHeading.classList.add("tipHeading");
+            let tipHeading = document.createElement('div');
+            tipHeading.classList.add('tipHeading');
             tipHeading.textContent = tip.type;
 
-            let tipHelp = document.createElement("a");
-            tipHelp.href = "#";
-            tipHelp.classList.add("tipHelp");
+            let tipHelp = document.createElement('a');
+            tipHelp.href = '#';
+            tipHelp.classList.add('tipHelp');
 
-            let tipText = document.createElement("div");
-            tipText.classList.add("tipText");
+            let tipText = document.createElement('div');
+            tipText.classList.add('tipText');
             tipText.textContent = tip.message;
 
             // appending
@@ -194,18 +194,18 @@ class Test {
             tipCont.appendChild(tipContent);
             tipCont.appendChild(fixIcon);
 
-            let father = $$("#tipsSlideCont")
+            let father = $$('#tipsSlideCont')
             father.appendChild(tipCont)
 
         }
 
         // hideLoading
 
-        $$("#tipsCont.blur").classList.remove('blur');
+        $$('#tipsCont.blur').classList.remove('blur');
 
-        $$(".resultSide:last-of-type .loadingOverlay").style.display = "none";
+        $$('.resultSide:last-of-type .loadingOverlay').style.display = 'none';
 
-        $$(".resultSide:last-of-type .blur").classList.remove('blur');
+        $$('.resultSide:last-of-type .blur').classList.remove('blur');
 
         // animate scroll
 
@@ -213,11 +213,11 @@ class Test {
 
         // set name of the repository
 
-        let repositoryName = data.repositoryUrl.split("/").pop();
+        let repositoryName = data.repositoryUrl.split('/').pop();
 
-        $$("#scoreResultCont>div:first-of-type>span.highlight").textContent = repositoryName;
+        $$('#scoreResultCont>div:first-of-type>span.highlight').textContent = repositoryName;
 
-        $$(".resultSide:nth-of-type(2)>h2>span.highlight").textContent = repositoryName;
+        $$('.resultSide:nth-of-type(2)>h2>span.highlight').textContent = repositoryName;
 
 
 
