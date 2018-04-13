@@ -1,12 +1,15 @@
+* {
+    font-family: 'Fira Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 #wrapper{
     width: 100%;
     position: absolute;
-    top:0px;
-    left:0px;
+    top: 0px;
+    left: 0px;
     background-image: url('../images/background.png');
     background-size: cover;
-    font-family: 'Fira Sans';
-    color:white;
+    color: white;
     height: 100%;
 }
 
@@ -25,11 +28,11 @@
 /* globals */
 
 .highlight{
-    color:#fec10b;
+    color: #fec10b;
 }
 
 .blur{
-    filter:blur(15px);
+    filter: blur(15px);
     transition-duration: 0.5s;
 }
 
@@ -38,7 +41,7 @@
 #searchBarCont{
     width: 75%;
     max-width: 700px;
-    padding:0px 20px;
+    padding: 0 20px;
     box-sizing: border-box;
     position: absolute;
     top: 50%;
@@ -60,13 +63,13 @@
     width: 100%;
     font-size: 24px;
     font-weight: normal;
-    color:#eee;
+    color: #eee;
 }
 
 #searchBoxCont{
     width: 100%;
     height: 60px;
-    background-color:#656565;
+    background-color: #656565;
     border-radius: 7px;
     margin: 13px;
 }
@@ -80,12 +83,10 @@
     font-size: 22px;
     color:white;
     padding-left: 20px;
-    font-family: 'Fira Sans';
 }
 
 #searchBoxCont>input[type=search]::placeholder{
     color:rgb(158, 158, 158);
-    font-family: 'Fira Sans';
 }
 
 #searchBoxCont>input[type=search]::-webkit-search-cancel-button{
@@ -329,39 +330,30 @@
 
 /* footer */
 
-#wrapper>footer{
+footer {
     width: 100%;
-    max-width: 420px;
-    height: 40px;
+    text-align: center;
     position: absolute;
     left:0px;
     right: 0px;
-    bottom: 0px;
+    bottom: 50px;
     margin: auto;
-    padding: 0px 20px;
     box-sizing: border-box;
 }
 
-#wrapper>footer>ul{
-    padding: 0px;
-    margin: 0px;
-    width: 100%;
-    height: 20px;
+footer > span {
+    color: #eee;
+    margin: 6px;
 }
 
-#wrapper>footer>ul>li{
-    float: left;
-    margin-left: 25px;
-}
-
-#wrapper>footer>ul>li:first-of-type{
-    list-style-type: none;
-    margin-left: 0px;
-}
-
-#wrapper>footer>ul>li>a{
+footer > a {
     text-decoration: none;
-    color:rgb(90, 90, 90);
+    color: #999;
+    transition-duration: 0.2s;
+}
+
+footer > a:hover {
+    color: #eee;
 }
 
 /*progress bar*/

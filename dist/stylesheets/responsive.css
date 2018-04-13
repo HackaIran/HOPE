@@ -1,4 +1,13 @@
-@media screen and (max-width: 1000px){
+@media screen and (max-width: 800px) {
+    .title-image {
+        width: 90%
+    }
+    #searchBarCont{
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
     #wrapper{
         height: auto;
         min-height: 100%;
