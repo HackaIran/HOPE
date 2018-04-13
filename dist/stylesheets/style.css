@@ -43,6 +43,14 @@ body {
     transition-duration: 0.5s;
 }
 
+.pjaxFadeItem{
+    opacity: 0;
+}
+
+.pjaxFadedIn{
+    opacity: 1;
+}
+
 /* index */
 
 #searchBarCont {

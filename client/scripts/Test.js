@@ -47,29 +47,18 @@ class Test {
 
             this.preInitiateTest(url).then((uniqueName, repositoryName) => {
 
-                $$('#searchBarCont').style.opacity = 0;
+                this.pjax.navigate('result/' + uniqueName, 'HOPE | ' + repositoryName);
 
-                setTimeout(() => {
+                this.pjax.appendPartial('/result/' + uniqueName).then(() => {
 
-                    this.pjax.navigate('result/' + uniqueName, 'HOPE | ' + repositoryName);
+                    this.getResult(uniqueName).then((result) => {
 
-                    this.pjax.appendPartial('/result/' + uniqueName).then(() => {
+                        result = result.data;
 
-                        setTimeout(() => {
+                        this.appendResult(result);
 
-                            $$('#resultCont').style.opacity = 1;
-
-                            this.getResult(uniqueName).then((result) => {
-
-                                result = result.data;
-
-                                this.appendResult(result);
-
-                            })
-                        }, 500)
-                    });
-
-                }, 500);
+                    })
+                });
 
 
             })
