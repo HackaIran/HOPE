@@ -28,23 +28,51 @@ class PJax {
      */
 
     appendPartial(url) {
+
         return new Promise((resolve, reject) => {
 
             document.dispatchEvent(new Event("pjax:start"));
 
-            axios.get(window.location.origin + url, {
-                headers: {
-                    'X-pjax': 'true'
-                }
-            }).then((result) => {
-                this.wrapperElem.innerHTML = result.data;
-                // execute scripts
-                let codes = this.wrapperElem.getElementsByTagName("script");
-                for (let i = 0; i < codes.length; i++) {
-                    eval(codes[i].text);
-                }
-                resolve();
-            })
+            // let's fade out current content
+
+            $$(".pjaxFadeItem").style.opacity = 0;
+
+            setTimeout(()=>{
+
+                axios.get(window.location.origin + url, {
+                    headers: {
+                        'X-pjax': 'true'
+                    }
+                }).then((result) => {
+                    this.wrapperElem.innerHTML = result.data;
+                    // execute scripts
+                    let codes = this.wrapperElem.getElementsByTagName("script");
+                    for (let i = 0; i < codes.length; i++) {
+                        eval(codes[i].text);
+                    }
+
+                    
+
+                    
+
+                    setTimeout(()=>{
+
+                        // let's fade in content
+
+                        $$(".pjaxFadeItem").style.opacity = 1;
+
+                        // Done;)
+
+                        resolve();
+                        
+                    },500)
+
+                    
+                })
+
+            },500)
+
+            
 
             document.dispatchEvent(new Event("pjax:end"));
 
