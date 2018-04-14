@@ -55,7 +55,10 @@ class Test {
 
         if (!repositoryUrl || !repositoryUrlRegex.test(repositoryUrl)) {
 
-            //error
+            //error -> invalid url
+
+            Snackbar.show({text: 'URL is invalid!',actionTextColor: '#fec10b'}); 
+
             return;
 
         }
