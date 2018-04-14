@@ -17,8 +17,8 @@ router.post('/evaluate',function(req,res,next){
     if(repositoryUrl){
 
         testController.test(repositoryUrl).then((result)=>{
-
-            res.send(result);
+            
+            res.send(JSON.stringify(result));
 
         })
 

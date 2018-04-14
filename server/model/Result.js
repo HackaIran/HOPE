@@ -11,7 +11,7 @@ const resultSchema = db.Schema({
         required: true
     },
     result: {
-        type: [],
+        type: {},
         required: false
     },
     time: {
