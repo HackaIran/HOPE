@@ -3,20 +3,41 @@ const Result = require('../model/Result');
 
 class TestController {
 
-    test(repositoryUrl){
+    constructor() {
+        this.urlRegex = /^(?:http|https):\/\/github\.com\/([\w-]+?)\/([\w-]+?)(?:\.git|)$/i;
+    }
+
+    checkUrl(repositoryUrl) {
+        if (this.urlRegex.test(repositoryUrl)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    getRepositoryInfo(repositoryUrl) {
+
+        let rep = {};
+
+        let regResult = this.urlRegex.exec(repositoryUrl);
+
+        rep.owner = regResult[1];
+
+        rep.name = regResult[2];
+
+        return rep;
+
+
+    }
+
+    test(repositoryUrl) {
 
         return new Promise((resolve, reject) => {
-            let urlRegex = /^(?:http|https):\/\/github\.com\/([\w-]+?)\/([\w-]+?)(?:\.git|)$/i;
 
-            if (urlRegex.test(repositoryUrl)) {
+            if (this.checkUrl(repositoryUrl)) {
 
-                let regResult = urlRegex.exec(repositoryUrl);
-
-                let repositoryOwner = regResult[1];
-
-                let repositoryName = regResult[2];
-
-                githubHope.evaluate(repositoryUrl).then((result)=>{
+                githubHope.evaluate(repositoryUrl).then((result) => {
 
                     // let's add it to DB
 
@@ -26,7 +47,7 @@ class TestController {
                         result: result.results
                     });
 
-                    newResult.save().then(()=>{
+                    newResult.save().then(() => {
 
                         result = this.calculateProps(result);
 
@@ -47,8 +68,8 @@ class TestController {
     }
 
     calculateProps(result) {
-        
-        let score = result.quality;
+
+        let score = result.quality *= 100;
 
         let scoreText;
 

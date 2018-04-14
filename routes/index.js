@@ -46,8 +46,10 @@ router.get('/evaluate', function (req, res) {
     res.render('result-partial');
 
   } else {
+
+    let rep = testController.getRepositoryInfo(req.query.url);
     
-    res.render('result');
+    res.render('result',{title:"HOPE | Result of " + rep.name});
 
   }
 

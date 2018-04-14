@@ -26,8 +26,8 @@ class Test {
 
         let searchBtn = $$('#searchBoxCont>div');
 
-        document.onkeydown = (e)=>{
-            if(e.key.toLocaleLowerCase() == 'enter'){
+        document.onkeydown = (e) => {
+            if (e.key.toLocaleLowerCase() == 'enter') {
                 this.processEvaluation();
             }
         }
@@ -35,7 +35,7 @@ class Test {
         searchBtn.onclick = () => {
 
             this.processEvaluation();
-            
+
         }
 
     }
@@ -46,7 +46,7 @@ class Test {
      * 
      */
 
-    processEvaluation(){
+    processEvaluation() {
         // Let's validate the url
 
         let repositoryUrl = $$('#searchBoxCont>input[type=search]').value;
@@ -55,7 +55,10 @@ class Test {
 
         if (!repositoryUrl || !repositoryUrlRegex.test(repositoryUrl)) {
 
-            //error
+            //error -> invalid url
+
+            Snackbar.show({text: 'URL is invalid!',actionTextColor: '#fec10b'}); 
+
             return;
 
         }
@@ -72,10 +75,18 @@ class Test {
 
         this.evaluate(repositoryUrl).then((result) => {
 
+            if(result.hasOwnProperty("error")){
+                Snackbar.show({text: 'Repository not found!',actionTextColor: '#fec10b'});
+                searchBtn.querySelector('i').classList.remove('loading');
+                searchBtn.style.opacity = 1;
+                searchBtn.style.pointerEvents = 'auto';
+                return;
+            }
+
             this.pjax.navigate('evaluate?url=' + repositoryUrl, 'HOPE | Result of ' + repositoryName);
 
             this.pjax.appendPartial('/evaluate?url=' + repositoryUrl).then(() => {
-                
+
                 result.repositoryUrl = repositoryUrl;
 
                 this.appendResult(result);
@@ -97,7 +108,7 @@ class Test {
 
     evaluate(url) {
 
-        return new Promise((resolve) => {
+        return new Promise((resolve,reject) => {
 
             axios.post(window.location.origin + '/api/evaluate', {
                 repositoryUrl: url
@@ -109,7 +120,7 @@ class Test {
 
                 resolve(result.data);
 
-            })
+            }).catch(reject)
         })
     }
 
@@ -143,47 +154,52 @@ class Test {
 
         // let's add tips
 
-        for (let tip of data.results) {
+        for (let tipGroup in data.results) {
+            for (let tip of data.results[tipGroup]) {
 
-            let tipCont = document.createElement('div');
-            tipCont.classList.add('tip');
 
-            let status = document.createElement('i');
-            status.classList.add('tipType');
-            status.classList.add(tip.status.toLowerCase());
+                let tipCont = document.createElement('div');
+                tipCont.classList.add('tip');
 
-            let fixIcon = document.createElement('a');
-            fixIcon.href = '#';
-            fixIcon.classList.add('tipFix');
-            fixIcon.classList.add('soon')
+                let status = document.createElement('i');
+                status.classList.add('tipType');
+                status.classList.add(tip.type.toLowerCase());
 
-            let tipContent = document.createElement('div');
-            tipContent.classList.add('tipContent');
+                let fixIcon = document.createElement('a');
+                fixIcon.href = '#';
+                fixIcon.classList.add('tipFix');
+                fixIcon.classList.add('soon')
 
-            let tipHeading = document.createElement('div');
-            tipHeading.classList.add('tipHeading');
-            tipHeading.textContent = tip.type;
+                let tipContent = document.createElement('div');
+                tipContent.classList.add('tipContent');
 
-            let tipHelp = document.createElement('a');
-            tipHelp.href = '#';
-            tipHelp.classList.add('tipHelp');
+                let tipHeading = document.createElement('div');
+                tipHeading.classList.add('tipHeading');
+                tipHeading.textContent = tip.heading;
 
-            let tipText = document.createElement('div');
-            tipText.classList.add('tipText');
-            tipText.textContent = tip.message;
+                let tipHelp = document.createElement('a');
+                tipHelp.href = '#';
+                tipHelp.classList.add('tipHelp');
 
-            // appending
+                let tipText = document.createElement('div');
+                tipText.classList.add('tipText');
+                tipText.textContent = tip.message;
 
-            tipContent.appendChild(tipHeading);
-            tipContent.appendChild(tipHelp);
-            tipContent.appendChild(tipText);
+                // appending
 
-            tipCont.appendChild(status);
-            tipCont.appendChild(tipContent);
-            tipCont.appendChild(fixIcon);
+                tipContent.appendChild(tipHeading);
+                tipContent.appendChild(tipHelp);
+                tipContent.appendChild(tipText);
 
-            let father = $$('#tipsSlideCont')
-            father.appendChild(tipCont)
+                tipCont.appendChild(status);
+                tipCont.appendChild(tipContent);
+                tipCont.appendChild(fixIcon);
+
+                let father = $$('#tipsSlideCont')
+                father.appendChild(tipCont)
+
+            }
+
 
         }
 
@@ -200,15 +216,13 @@ class Test {
 
         // if .git url
 
-        if(/^(.+)\.git$/i.test(repositoryName)){
+        if (/^(.+)\.git$/i.test(repositoryName)) {
             repositoryName = /^(.+)\.git$/i.exec(repositoryName)[1];
         }
 
         $$('#scoreResultCont>div:first-of-type>span.highlight').textContent = repositoryName;
 
         $$('.resultSide:nth-of-type(2)>h2>span.highlight').textContent = repositoryName;
-
-
 
     }
 

@@ -17,9 +17,11 @@ router.post('/evaluate',function(req,res,next){
     if(repositoryUrl){
 
         testController.test(repositoryUrl).then((result)=>{
+            
+            res.send(JSON.stringify(result));
 
-            res.send(result);
-
+        }).catch(()=>{
+            res.send({error:"repository not found!"});
         })
 
     }else{
