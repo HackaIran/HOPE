@@ -75,6 +75,14 @@ class Test {
 
         this.evaluate(repositoryUrl).then((result) => {
 
+            if(result.hasOwnProperty("error")){
+                Snackbar.show({text: 'Repository not found!',actionTextColor: '#fec10b'});
+                searchBtn.querySelector('i').classList.remove('loading');
+                searchBtn.style.opacity = 1;
+                searchBtn.style.pointerEvents = 'auto';
+                return;
+            }
+
             this.pjax.navigate('evaluate?url=' + repositoryUrl, 'HOPE | Result of ' + repositoryName);
 
             this.pjax.appendPartial('/evaluate?url=' + repositoryUrl).then(() => {
@@ -100,7 +108,7 @@ class Test {
 
     evaluate(url) {
 
-        return new Promise((resolve) => {
+        return new Promise((resolve,reject) => {
 
             axios.post(window.location.origin + '/api/evaluate', {
                 repositoryUrl: url
@@ -112,7 +120,7 @@ class Test {
 
                 resolve(result.data);
 
-            })
+            }).catch(reject)
         })
     }
 

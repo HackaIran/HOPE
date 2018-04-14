@@ -20,6 +20,8 @@ router.post('/evaluate',function(req,res,next){
             
             res.send(JSON.stringify(result));
 
+        }).catch(()=>{
+            res.send({error:"repository not found!"});
         })
 
     }else{

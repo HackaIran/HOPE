@@ -39,6 +39,11 @@ block script
 
     window.test.evaluate(window.getParameterByName('url')).then((result)=>{
       
+      if(result.hasOwnProperty("error")){
+        Snackbar.show({text: 'Repository not found!',actionTextColor: '#fec10b'});
+        return;
+      }
+
       result.repositoryUrl = window.getParameterByName('url');
 
       window.test.appendResult(result);
@@ -58,7 +63,7 @@ block script
       }else{
         $$('#tipTopBlur').classList.remove('none');
       }
-      console.log(tipsHeight,$$('#tipsSlideCont').scrollTop)
+      
       if (($$('#tipsSlideCont').offsetHeight + $$('#tipsSlideCont').scrollTop) >= tipsHeight) {
         $$('#tipBottomBlur').classList.add('none');
       }else{
