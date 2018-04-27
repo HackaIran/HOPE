@@ -11,6 +11,7 @@ const pe = new PrettyError;
 
 const index = require('./routes/index');
 const api = require('./routes/api');
+const adviser = require('./routes/adviser');
 
 const app = express();
 
@@ -35,6 +36,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 app.use('/', index);
 app.use('/api/',api);
+app.use('/adviser/', adviser);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
