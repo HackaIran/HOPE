@@ -1,10 +1,22 @@
+const fs = require('fs');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+
+const bundleNames = fs.readdirSync('./client/scripts');
+const entries = {};
+for (let name of bundleNames) {
+    if(name.split('.').length == 1){
+        entries[name] = `./client/scripts/${name}/index.js`
+    }
+    
+}
+
 module.exports = {
     mode: 'development',
     devtool: 'inline-source-map',
-    entry: './client/index.js',
+    entry: entries,
     output: {
-        filename: './javascripts/bundle.js',
-        sourceMapFilename: './javascripts/bundle.js.map'
+        filename: './javascripts/[name].bundle.js',
+        sourceMapFilename: './javascripts/[name].bundle.js.map'
     },
     module: {
         rules: [
@@ -17,5 +29,8 @@ module.exports = {
                 test: /\.sass$/,
                 use: [{ loader: 'style-loader' }, { loader: 'css-loader?-url' }, { loader: 'sass-loader' }]
             }]
-    }
+    },
+    plugins: [
+        new UglifyJsPlugin({ sourceMap: true })
+    ]
 };

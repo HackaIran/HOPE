@@ -3,9 +3,9 @@ window.$$ = (selector) => {
 }
 //
 
-const ProgressBar = require('./scripts/ProgressBar');
+const ProgressBar = require('../ProgressBar');
 
-const Test = require('./scripts/Test');
+const Test = require('../Test');
 
 //
 
