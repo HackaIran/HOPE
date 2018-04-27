@@ -17,17 +17,17 @@ html
       .chooserWrapper
         .chooserSliderWrapper
           .questionWrapper.active
-            .questionText
+            .questionText Are you looking for commercial use?
             .optionsWrapper
-              .option.active Yes
-              .option No
-              .option Not Sure
-    footer
-      a(href='http://hackairan.com/hackademy', target='_blank') What is Hackademy?
-      span ●
-      a(href='http://hackairan.com', target='_blank') HackaIran
-      span ●
-      a(href='https://github.com/HackaIran/HOPE', target='_blank') HOPE in GitHub
+              .option(data-value=1) Yes
+              .option(data-value=2) No
+              .option(data-value=3).active Not Sure
+          .questionWrapper
+            .questionText Are you looking for commercial use?
+            .optionsWrapper
+              .option(data-value=1) Yes
+              .option(data-value=2) No
+              .option(data-value=3).active Not Sure
 
     script(src='/javascripts/adviser.bundle.js')
     script(src='/javascripts/plugins/snackbar.min.js')
