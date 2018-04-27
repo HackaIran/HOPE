@@ -2,14 +2,26 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/HOPE.css')
-    link(rel='stylesheet', href='/stylesheets/responsive.css')
+    link(rel='stylesheet', href='/stylesheets/adviser.css')
+    link(rel='stylesheet', href='/stylesheets/adviser.responsive.css')
     link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Fira+Sans')
-    link(rel="stylesheet", href="/stylesheets/snackbar.min.css")
+    link(rel="stylesheet", href="/stylesheets/plugins/snackbar.min.css")
   body
     #wrapper
-      block content
-
+      .startWrapper
+        .startBoxWrapper
+          img(src='/images/logo.png').logo
+          .startBtn
+            span Let's choose a license
+            i
+      .chooserWrapper
+        .chooserSliderWrapper
+          .questionWrapper.active
+            .questionText
+            .optionsWrapper
+              .option.active Yes
+              .option No
+              .option Not Sure
     footer
       a(href='http://hackairan.com/hackademy', target='_blank') What is Hackademy?
       span ●
@@ -17,6 +29,5 @@ html
       span ●
       a(href='https://github.com/HackaIran/HOPE', target='_blank') HOPE in GitHub
 
-    script(src='/javascripts/advicer.bundle.js')
-    script(src='/javascripts/snackbar.min.js')
-    block script
+    script(src='/javascripts/adviser.bundle.js')
+    script(src='/javascripts/plugins/snackbar.min.js')

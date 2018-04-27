@@ -24,7 +24,9 @@ app.use(sassMiddleware({
   /* Options */
   src: path.join(__dirname, 'client'),
   dest: path.join(__dirname, 'dist'),
-  outputStyle: 'compressed'
+  debug: true,
+  outputStyle: 'compressed',
+  indentedSyntax:true
 }));
 
 // uncomment after placing your favicon in /dist

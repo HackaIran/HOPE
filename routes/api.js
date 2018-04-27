@@ -30,4 +30,9 @@ router.post('/evaluate',function(req,res,next){
 
 });
 
+router.post('/adviser/submitAdvice',(req,res)=>{
+    // here goes the advice submit codes
+    
+});
+
 module.exports = router;
