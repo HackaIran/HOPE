@@ -7,6 +7,8 @@ router.get('/',(req,res)=>{
 
     // here the code goes
 
+    res.render('adviser/index');
+
 });
 
 module.exports = router;
