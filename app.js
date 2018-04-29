@@ -20,14 +20,14 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 // node sass middleware
-app.use(sassMiddleware({
-  /* Options */
-  src: path.join(__dirname, 'client'),
-  dest: path.join(__dirname, 'dist'),
-  debug: true,
-  outputStyle: 'compressed',
-  indentedSyntax:true
-}));
+// app.use(sassMiddleware({
+//   /* Options */
+//   src: path.join(__dirname, 'client'),
+//   dest: path.join(__dirname, 'dist'),
+//   debug: true,
+//   outputStyle: 'compressed',
+//   indentedSyntax:true
+// }));
 
 // uncomment after placing your favicon in /dist
 //app.use(favicon(path.join(__dirname, 'dist', 'favicon.ico')));
