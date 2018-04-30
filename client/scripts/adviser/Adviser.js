@@ -20,12 +20,14 @@ class Advice {
                 break;
             }
             height += question.offsetHeight;
+            console.log(question.offsetHeight)
         }
         height += $$('.questionWrapper.active').offsetHeight / 2;
         if (height < $$('.chooserWrapper').offsetHeight) {
             $$('.chooserSliderWrapper').style.transform = 'translateY(' + (($$('.chooserWrapper').offsetHeight / 2) - height) + 'px)';
         } else {
-            $$('.chooserSliderWrapper').style.transform = 'translateY(' + height + 'px)';
+            console.log(height)
+            $$('.chooserSliderWrapper').style.transform = 'translateY(-' + (height - ($$('.chooserWrapper').offsetHeight / 2)) + 'px)';
         }
 
     }
