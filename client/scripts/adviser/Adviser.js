@@ -63,12 +63,12 @@ class Advice {
 
             document.querySelectorAll('.questionWrapper').forEach(elem => {
                 elem.onclick = function () {
-                    if(that._showingResult){
+                    if (that._showingResult) {
                         that.hideResults();
-                    }else{
+                    } else {
                         $$('.questionWrapper.active').classList.remove('active');
                     }
-                    
+
                     this.classList.add('active');
                     that.reprepareQuestionsDesign();
                     that.redesignQuestions();
@@ -139,7 +139,22 @@ class Advice {
 
         let answerWrappers = document.querySelectorAll('.questionWrapper');
 
-        let answers = {};
+        // let's load the defaults
+
+        let answers = {
+            commercialUse: true,
+            destribution: true,
+            modification: true,
+            patentUse: false,
+            privateUse: true,
+            discloseSource: false,
+            licenseAndCopyRightNotice: true,
+            sameLicense: false,
+            stateChange: false,
+            liability: true,
+            tradeMarkUse: false,
+            warranty: true
+        };
 
         answerWrappers.forEach(question => {
             let questionName = question.getAttribute('data-name');
@@ -156,9 +171,9 @@ class Advice {
         })
 
         this.getResults(answers).then((results) => {
-            console.log('s')
+
             this.showResults(results.data);
-            
+
             this.hideLoading();
 
         }).catch(this.hideLoading)
@@ -169,7 +184,7 @@ class Advice {
         return new Promise((resolve, reject) => {
             axios.post('/api/adviser/advice', {
                 answers
-            }).then((results)=>{
+            }).then((results) => {
                 resolve(results)
             }).catch(reject);
         })
@@ -185,15 +200,15 @@ class Advice {
 
         // let's slice the results
 
-        results = results.slice(0,3);
+        results = results.slice(0, 3);
 
         // let's load the results
         $$('.resultsWrapper ul').innerHTML = '';
-        for(let result of results){
+        for (let result of results) {
             $$('.resultsWrapper ul').innerHTML += `<li><span class="licenseName">${result.name}</span><i class="help"></i><span class="percent">${result.mark * 100}%</span></li>`;
         }
 
-        $$('.chooserSliderWrapper').style.transform = 'translateY(-'+($$('.chooserSliderWrapper').offsetHeight - 100)+'px)';
+        $$('.chooserSliderWrapper').style.transform = 'translateY(-' + ($$('.chooserSliderWrapper').offsetHeight - 100) + 'px)';
 
         $$('.questionWrapper:last-of-type').classList.remove('active');
 
@@ -207,7 +222,7 @@ class Advice {
 
     }
 
-    hideResults(){
+    hideResults() {
         this._showingResult = false;
         $$('.resultsWrapper').style.top = '150%';
     }
@@ -245,9 +260,9 @@ class Advice {
             elem.querySelector('.option.active').classList.remove('active');
             elem.querySelector('.option[data-value="3"]').classList.add('active')
         })
-        if(this._showingResult){
+        if (this._showingResult) {
             this.hideResults();
-        }else{
+        } else {
             $$('.questionWrapper.active').classList.remove('active');
         }
         $$('.questionWrapper:first-of-type').classList.add('active');
