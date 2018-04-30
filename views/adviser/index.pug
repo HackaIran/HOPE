@@ -15,8 +15,10 @@ html
             span Let's choose a license
             i
       .chooserWrapper
+        .loading
+          img(src='images/loading.gif')
         .chooserSliderWrapper
-          .questionWrapper.active
+          .questionWrapper(data-name='commercialUse').active
             .questionText Are you looking for commercial use?
             .optionsWrapper
               .option(data-value=1) Yes
@@ -28,6 +30,36 @@ html
               .option(data-value=1) Yes
               .option(data-value=2) No
               .option(data-value=3).active Not Sure
-
+          .questionWrapper
+            .questionText Are you looking for commercial use?
+            .optionsWrapper
+              .option(data-value=1) Yes
+              .option(data-value=2) No
+              .option(data-value=3).active Not Sure
+          .questionWrapper
+            .questionText Are you looking for commercial use?
+            .optionsWrapper
+              .option(data-value=1) Yes
+              .option(data-value=2) No
+              .option(data-value=3).active Not Sure
+          .questionWrapper
+            .questionText Are you looking for commercial use?
+            .optionsWrapper
+              .option(data-value=1) Yes
+              .option(data-value=2) No
+              .option(data-value=3).active Not Sure
+          .questionWrapper
+            .questionText Are you looking for commercial use?
+            .optionsWrapper
+              .option(data-value=1) Yes
+              .option(data-value=2) No
+              .option(data-value=3).active Not Sure
+        .resultsWrapper
+          header Suggested licenses:
+          ul
+            li
+              span.licenseName MIT
+              i.help
+              span.percent 98%
     script(src='/javascripts/adviser.bundle.js')
     script(src='/javascripts/plugins/snackbar.min.js')

@@ -1,9 +1,13 @@
+const axios = require('axios');
+
 class Advice {
 
     constructor() {
         this.initEvents();
         this.reprepareQuestionsDesign();
         this.redesignQuestions();
+
+        this._showingResult = false;
     }
 
     /**
@@ -59,7 +63,12 @@ class Advice {
 
             document.querySelectorAll('.questionWrapper').forEach(elem => {
                 elem.onclick = function () {
-                    $$('.questionWrapper.active').classList.remove('active');
+                    if(that._showingResult){
+                        that.hideResults();
+                    }else{
+                        $$('.questionWrapper.active').classList.remove('active');
+                    }
+                    
                     this.classList.add('active');
                     that.reprepareQuestionsDesign();
                     that.redesignQuestions();
@@ -80,6 +89,14 @@ class Advice {
                         that.redesignQuestions();
                     }
 
+                }
+            })
+
+            // for finishing
+
+            document.querySelectorAll('.questionWrapper:last-of-type .option').forEach(option => {
+                option.onclick = () => {
+                    this.advice()
                 }
             })
 
@@ -114,12 +131,125 @@ class Advice {
      * 
      */
 
+    advice() {
+
+        this.showLoading();
+
+        // let's get the answers
+
+        let answerWrappers = document.querySelectorAll('.questionWrapper');
+
+        let answers = {};
+
+        answerWrappers.forEach(question => {
+            let questionName = question.getAttribute('data-name');
+            let answer = question.querySelector('.option.active');
+            answer = answer.getAttribute('data-value');
+            if (answer == 1) {
+                answer = true;
+            } else if (answer == 2) {
+                answer = false;
+            } else {
+                return;
+            }
+            answers[questionName] = answer;
+        })
+
+        this.getResults(answers).then((results) => {
+            console.log('s')
+            this.showResults(results.data);
+            
+            this.hideLoading();
+
+        }).catch(this.hideLoading)
+
+    }
+
+    getResults(answers) {
+        return new Promise((resolve, reject) => {
+            axios.post('/api/adviser/advice', {
+                answers
+            }).then((results)=>{
+                resolve(results)
+            }).catch(reject);
+        })
+    }
+
+    /**
+     * 
+     * 
+     * 
+     */
+
+    showResults(results) {
+
+        // let's slice the results
+
+        results = results.slice(0,3);
+
+        // let's load the results
+        $$('.resultsWrapper ul').innerHTML = '';
+        for(let result of results){
+            $$('.resultsWrapper ul').innerHTML += `<li><span class="licenseName">${result.name}</span><i class="help"></i><span class="percent">${result.mark * 100}%</span></li>`;
+        }
+
+        $$('.chooserSliderWrapper').style.transform = 'translateY(-'+($$('.chooserSliderWrapper').offsetHeight - 100)+'px)';
+
+        $$('.questionWrapper:last-of-type').classList.remove('active');
+
+        $$('.questionWrapper:last-of-type').style.transform = 'scale(0.6)'
+
+        $$('.questionWrapper:last-of-type').style.opacity = '0.8'
+
+        $$('.resultsWrapper').style.top = '50%';
+
+        this._showingResult = true;
+
+    }
+
+    hideResults(){
+        this._showingResult = false;
+        $$('.resultsWrapper').style.top = '150%';
+    }
+
+    /**
+     * 
+     * 
+     * 
+     */
+
+    showLoading() {
+        $$('.chooserSliderWrapper').classList.add('beingLoaded');
+        $$('.chooserWrapper .loading').classList.add('show');
+    }
+
+    /**
+     * 
+     * 
+     * 
+     */
+
+    hideLoading() {
+        $$('.chooserSliderWrapper').classList.remove('beingLoaded');
+        $$('.chooserWrapper .loading').classList.remove('show');
+    }
+
+    /**
+     * 
+     * 
+     * 
+     */
+
     reset() {
         document.querySelectorAll('.questionWrapper').forEach(elem => {
             elem.querySelector('.option.active').classList.remove('active');
             elem.querySelector('.option[data-value="3"]').classList.add('active')
         })
-        $$('.questionWrapper.active').classList.remove('active');
+        if(this._showingResult){
+            this.hideResults();
+        }else{
+            $$('.questionWrapper.active').classList.remove('active');
+        }
         $$('.questionWrapper:first-of-type').classList.add('active');
         this.reprepareQuestionsDesign();
         this.redesignQuestions();

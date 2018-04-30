@@ -4,6 +4,8 @@ const router = express.Router();
 
 const TestController = require("../server/controllers/TestController");
 
+const AdviserController = require('../server/controllers/AdviserController');
+
 //
 
 const testController = new TestController();
@@ -30,8 +32,17 @@ router.post('/evaluate',function(req,res,next){
 
 });
 
-router.post('/adviser/submitAdvice',(req,res)=>{
-    // here goes the advice submit codes
+router.post('/adviser/advice',(req,res)=>{
+    
+    let answers = req.body.answers;
+
+    if(answers){
+        AdviserController.advice(answers).then((results)=>{
+            res.send(JSON.stringify(results));
+        })
+    }else{
+        res.status(404).send();
+    }
     
 });
 
