@@ -38,24 +38,24 @@ body {
 
 /* globals */
 
-.highlight{
+.highlight {
     color: #fec10b;
 }
 
-.blur{
+.blur {
     filter: blur(15px);
     transition-duration: 0.5s;
 }
 
-.pjaxFadeItem{
+.pjaxFadeItem {
     opacity: 0;
 }
 
-.pjaxFadedIn{
+.pjaxFadedIn {
     opacity: 1;
 }
 
-.none{
+.none {
     opacity: 0;
     pointer-events: none;
     transition-duration: 0.2s;
@@ -76,7 +76,7 @@ body {
     transition-duration: 0.5s;
 }
 
-#searchBarCont>h1{
+#searchBarCont>h1 {
     width: 100%;
     height: 60px;
     font-size: 70px;
@@ -84,14 +84,14 @@ body {
     font-weight: bold;
 }
 
-#searchBarCont>h4{
+#searchBarCont>h4 {
     width: 100%;
     font-size: 24px;
     font-weight: normal;
     color: #eee;
 }
 
-#searchBoxCont{
+#searchBoxCont {
     width: 100%;
     height: 60px;
     background-color: #656565;
@@ -99,34 +99,34 @@ body {
     margin: 13px;
 }
 
-#searchBoxCont>input[type=search]{
+#searchBoxCont>input[type=search] {
     width: calc(100% - 96px);
     height: 100%;
     border-radius: 10px;
-    background-color:transparent;
-    border-color:transparent;
+    background-color: transparent;
+    border-color: transparent;
     font-size: 22px;
-    color:white;
+    color: white;
     padding-left: 20px;
 }
 
-#searchBoxCont>input[type=search]::placeholder{
-    color:rgb(158, 158, 158);
+#searchBoxCont>input[type=search]::placeholder {
+    color: rgb(158, 158, 158);
 }
 
-#searchBoxCont>input[type=search]::-webkit-search-cancel-button{
+#searchBoxCont>input[type=search]::-webkit-search-cancel-button {
     display: none;
 }
 
-#searchBoxCont>input[type=search]:focus{
+#searchBoxCont>input[type=search]:focus {
     outline: none;
 }
 
-#searchBoxCont>div{
+#searchBoxCont>div {
     width: 46px;
     height: 46px;
     float: right;
-    background-color:#fec10b;
+    background-color: #fec10b;
     margin: 7px;
     border-radius: 5px;
     padding: 7px;
@@ -134,7 +134,7 @@ body {
     cursor: pointer;
 }
 
-#searchBoxCont>div>i{
+#searchBoxCont>div>i {
     display: block;
     width: 100%;
     height: 100%;
@@ -143,21 +143,21 @@ body {
     transition-duration: 0.2s;
 }
 
-#searchBoxCont>div>i.loading{
+#searchBoxCont>div>i.loading {
     background-image: url('../images/loading.gif');
     background-size: 50% 50%;
     background-position: center;
     background-repeat: no-repeat;
 }
 
-#searchBoxCont>div:active{
+#searchBoxCont>div:active {
     transform: scale(0.95);
     transition-duration: 0.2s;
 }
 
 /* result page */
 
-#resultCont{
+#resultCont {
     width: 100%;
     max-width: 1400px;
     display: flex;
@@ -205,7 +205,8 @@ body {
     bottom: 0px;
     margin: auto;
 }
-.loadingOverlay > div{
+
+.loadingOverlay>div {
     background-image: url('../images/loading.gif');
     background-position: center;
     background-repeat: no-repeat;
@@ -213,7 +214,7 @@ body {
     height: 50px;
 }
 
-.resultSide:nth-of-type(1)>h1{
+.resultSide:nth-of-type(1)>h1 {
     width: 100%;
     height: 60px;
     font-size: 50px;
@@ -221,29 +222,29 @@ body {
     font-weight: bold;
 }
 
-.resultSide:nth-of-type(1)>h4{
+.resultSide:nth-of-type(1)>h4 {
     margin-top: 5px;
     width: 100%;
     font-size: 18px;
     font-weight: normal;
-    color:#eee;
+    color: #eee;
 }
 
-.resultSide:nth-of-type(1)>#searchBoxCont{
+.resultSide:nth-of-type(1)>#searchBoxCont {
     height: 44px;
     /* width: 80%; */
 }
 
-.resultSide:nth-of-type(1)>#searchBoxCont>div{
+.resultSide:nth-of-type(1)>#searchBoxCont>div {
     width: 30px;
     height: 30px;
 }
 
-.resultSide:nth-of-type(1)>#searchBoxCont>input[type=search]::placeholder{
+.resultSide:nth-of-type(1)>#searchBoxCont>input[type=search]::placeholder {
     font-size: 16px;
 }
 
-#scoreResultCont{
+#scoreResultCont {
     width: 100%;
     flex-grow: 1;
     margin-bottom: 30px;
@@ -253,7 +254,7 @@ body {
     flex-direction: column;
 }
 
-#scoreResultCont > div:first-of-type{
+#scoreResultCont>div:first-of-type {
     width: 100%;
     margin-bottom: 20px;
     text-align: center;
@@ -261,7 +262,7 @@ body {
     font-weight: 600;
 }
 
-#scoreCont{
+#scoreCont {
     width: 100%;
     text-align: center;
 }
@@ -281,78 +282,78 @@ body {
 }
 
 #scoreCont>span:last-of-type {
-    color:#686868;
+    color: #686868;
 }
 
 /* for scores */
 
-.green{
-    color:green;
+.green {
+    color: green;
     text-shadow: 0 0 9px rgba(0, 128, 0, 0.7);
 }
 
-.orange{
-    color:orange;
+.orange {
+    color: orange;
     text-shadow: 0 0 9px rgba(255, 166, 0, 0.7);
 }
 
-.red{
-    color:red;
+.red {
+    color: red;
     text-shadow: 0 0 9px rgba(255, 0, 0, 0.7);
 }
 
-.lightRed{
-    color:rgb(141, 66, 66);
+.lightRed {
+    color: rgb(141, 66, 66);
     text-shadow: 0 0 9px rgba(141, 66, 66, 0.7);
 }
 
-.lightGreen{
-    color:lightgreen;
+.lightGreen {
+    color: lightgreen;
     text-shadow: 0 0 9px rgba(144, 238, 144, 0.7);
 }
 
 /* tips */
 
-.resultSide:nth-of-type(2){
-    overflow:hidden;
+.resultSide:nth-of-type(2) {
+    overflow: hidden;
 }
 
-.resultSide:nth-of-type(2) > h2{
+.resultSide:nth-of-type(2)>h2 {
     width: 100%;
     font-size: 30px;
     margin-top: 24px;
     margin-bottom: 23px;
 }
 
-#tipsCont{
+#tipsCont {
     width: 100%;
     height: calc(100% - 100px);
     overflow-y: hidden;
     position: relative;
 }
 
-.tipBlur{
+.tipBlur {
     height: 150px;
     width: calc(100% - 5px);
     pointer-events: none;
     transition-duration: 0.2s;
 }
 
-#tipTopBlur{
+#tipTopBlur {
     position: absolute;
     top: 0px;
     background: linear-gradient(to bottom, black, transparent);
     z-index: 1;
 }
 
-#tipBottomBlur{
+#tipBottomBlur {
     position: absolute;
     bottom: 0px;
     background: linear-gradient(to top, black, transparent);
     z-index: 1;
 }
 
-#tipsSlideCont{
+#tipsSlideCont {
     overflow-y: scroll;
     height: 100%;
 }
@@ -362,19 +363,19 @@ body {
 #tipsSlideCont::-webkit-scrollbar {
     width: 5px;
 }
- 
+
 #tipsSlideCont::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
- 
+
 #tipsSlideCont::-webkit-scrollbar-thumb {
-  background-color: darkgrey;
-  outline: 1px solid slategrey;
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
 }
 
 /* end of scrollbar styles */
 
-.tip{
+.tip {
     width: 100%;
     min-height: 100px;
     display: flex;
@@ -383,7 +384,7 @@ body {
     position: relative;
 }
 
-.tipHeading{
+.tipHeading {
     width: 100%;
     min-height: 50px;
     line-height: 50px;
@@ -395,7 +396,18 @@ body {
     margin-right: 50px;
 }
 
-.tipType{
+.tipHelp {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-image: url('../images/help.png');
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    cursor: pointer;
+    background-position: center;
+}
+
+.tipType {
     min-width: 50px;
     height: 50px;
     background-size: 60% 60%;
@@ -404,15 +416,15 @@ body {
     display: block;
 }
 
-.tipType.warning{
+.tipType.warning {
     background-image: url('../images/warning.png');
 }
 
-.tipType.success{
+.tipType.success {
     background-image: url('../images/success.png');
 }
 
-.tipType.fail{
+.tipType.fail {
     background-image: url('../images/fail.png');
 }
 
@@ -429,13 +441,16 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 }
+
 .tipFix.soon {
     opacity: 0.8;
     cursor: help;
 }
+
 .tipFix.soon:hover {
     opacity: 1;
 }
+
 .tipFix.soon:after {
     content: 'soon';
     background: #fec10b;
@@ -451,6 +466,7 @@ body {
     border-radius: 3px;
     transition-duration: 0.2s;
 }
+
 .tipFix.soon:before {
     content: ' ';
     position: absolute;
@@ -464,10 +480,12 @@ body {
     border-top-color: #fec10b;
     transition-duration: 0.2s;
 }
+
 .tipFix.soon:hover:after {
     opacity: 1;
     top: -30px;
 }
+
 .tipFix.soon:hover:before {
     opacity: 1;
     top: -6px;
@@ -479,25 +497,25 @@ footer {
     width: 100%;
     text-align: center;
     position: absolute;
-    left:0px;
+    left: 0px;
     right: 0px;
     bottom: 50px;
     margin: auto;
     box-sizing: border-box;
 }
 
-footer > span {
+footer>span {
     color: #eee;
     margin: 6px;
 }
 
-footer > a {
+footer>a {
     text-decoration: none;
     color: #999;
     transition-duration: 0.2s;
 }
 
-footer > a:hover {
+footer>a:hover {
     color: #eee;
 }
 
