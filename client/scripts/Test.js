@@ -157,7 +157,6 @@ class Test {
         for (let tipGroup in data.results) {
             for (let tip of data.results[tipGroup]) {
 
-
                 let tipCont = document.createElement('div');
                 tipCont.classList.add('tip');
 
@@ -168,7 +167,12 @@ class Test {
                 let fixIcon = document.createElement('a');
                 fixIcon.href = '#';
                 fixIcon.classList.add('tipFix');
-                fixIcon.classList.add('soon')
+                // fixIcon.classList.add('soon')
+                if(tip.heading.test(/license/i)){
+                    fixIcon.href = '/adviser';
+                }else{
+                    fixIcon.style.display = 'none'
+                }
 
                 let tipContent = document.createElement('div');
                 tipContent.classList.add('tipContent');
@@ -188,7 +192,7 @@ class Test {
                 // appending
 
                 tipContent.appendChild(tipHeading);
-                tipContent.appendChild(tipHelp);
+                tipHeading.appendChild(tipHelp);
                 tipContent.appendChild(tipText);
 
                 tipCont.appendChild(status);
