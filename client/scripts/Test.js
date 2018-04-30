@@ -168,7 +168,7 @@ class Test {
                 fixIcon.href = '#';
                 fixIcon.classList.add('tipFix');
                 // fixIcon.classList.add('soon')
-                if(tip.heading.test(/license/i)){
+                if(/license/i.test(tip.heading)){
                     fixIcon.href = '/adviser';
                 }else{
                     fixIcon.style.display = 'none'
