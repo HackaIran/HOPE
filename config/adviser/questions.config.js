@@ -1,5 +1,4 @@
 module.exports = [{
-    'name':'Name',
-    'text':'Text',
-    'default':false
+    'name':'commercialUse',
+    'text':'Are you looking for commercial use?'
 }];
