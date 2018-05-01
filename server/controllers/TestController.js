@@ -4,7 +4,7 @@ const Result = require('../model/Result');
 class TestController {
 
     constructor() {
-        this.urlRegex = /^(?:http|https):\/\/github\.com\/([\w-]+?)\/([\w-]+?)(?:\.git|)$/i;
+        this.urlRegex = /^(?:http|https):\/\/github\.com\/[\w-.]+?\/[\w-.]+?(?:\.git|)$/i;
     }
 
     checkUrl(repositoryUrl) {
