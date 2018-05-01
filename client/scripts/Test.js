@@ -167,6 +167,7 @@ class Test {
                 let fixIcon = document.createElement('a');
                 fixIcon.href = '#';
                 fixIcon.classList.add('tipFix');
+                fixIcon.setAttribute("target","_blank");
                 // fixIcon.classList.add('soon')
                 if(/license/i.test(tip.heading)){
                     fixIcon.href = '/adviser';
