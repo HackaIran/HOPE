@@ -2,7 +2,7 @@ const db = require('./db');
 
 const adviceSchema = db.Schema({
     answers:{
-        type:[{}]
+        type: {}
     },
     licenses:{
         type:[{}]
