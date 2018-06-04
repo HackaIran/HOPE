@@ -29,15 +29,15 @@ If you'd prefer to run HOPE inside a Docker container, you may pull the image fr
 $ docker pull hackairan/hope
 ```
 2. Clone the repository or just the "docker-compose.yml" in the current directory.
-3. Use "docker-compse" to run the HOPE and MongoDB images: (HOPE depends on MongoDB)
+3. Use "docker-compose" to run the HOPE and MongoDB images and easily link them: (HOPE depends on MongoDB)
 ```bash
 $ docker-compose up
 ```
-* To build the image using Dockerfile, get the "Dockerfile" or change directory to the cloned repository and execute the following commad:
+* To build the image using Dockerfile, get the "Dockerfile" or change directory to the cloned repository and execute the following command:
 ```bash
 $ docker build -t hackairan/hope .
 ```
-and the follow step 3.
+and then follow step 3.
 
 ## License
 BSD 3-Clause
