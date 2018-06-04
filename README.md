@@ -31,7 +31,11 @@ $ docker pull hackairan/hope
 2. Clone the repository or just the "docker-compose.yml" in the current directory.
 3. Use "docker-compose" to run the HOPE and MongoDB images and easily link them: (HOPE depends on MongoDB)
 ```bash
-$ docker-compose up
+$ docker-compose up -d
+```
+The ```-d``` flag starts the containers in the background and leaves them running. In order to stop the containers, execute:
+```bash
+$ docker-compose down
 ```
 * To build the image using Dockerfile, get the "Dockerfile" or change directory to the cloned repository and execute the following command:
 ```bash
