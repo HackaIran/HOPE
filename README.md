@@ -23,6 +23,11 @@ then you will have access to HOPE in your http://localhost:3000
 * `npm run bundle:watch` - Same as `npm run bundle` but watches files for changes.
 
 ## Docker
+
+[![](https://images.microbadger.com/badges/image/mhshahin/mtproxy.svg)](https://microbadger.com/images/mhshahin/mtproxy "Get your own image badge on microbadger.com")
+
+[![](https://images.microbadger.com/badges/version/mhshahin/mtproxy.svg)](https://microbadger.com/images/mhshahin/mtproxy "Get your own version badge on microbadger.com")
+
 If you'd prefer to run HOPE inside a Docker container, you may pull the image from Docker Hub or you could even build it using the Dockerfile included.
 1. Pull the image using
 ```bash
