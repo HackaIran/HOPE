@@ -342,14 +342,14 @@ body {
 #tipTopBlur {
     position: absolute;
     top: 0px;
-    background: linear-gradient(to bottom, black, transparent);
+    background: linear-gradient(to bottom, #111113, transparent);
     z-index: 1;
 }
 
 #tipBottomBlur {
     position: absolute;
     bottom: 0px;
-    background: linear-gradient(to top, black, transparent);
+    background: linear-gradient(to top, #111113, transparent);
     z-index: 1;
 }
 
