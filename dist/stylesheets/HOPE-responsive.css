@@ -45,7 +45,6 @@
         margin-top: 50px;
     }
     #wrapper{
-        min-height: 100%;
         overflow-y: auto;
         position: relative;
     }
@@ -55,14 +54,24 @@
     }
     footer span {
         opacity: 0;
+        margin: 0px;
         display: block;
-        margin: 10px;
     }
     #resultCont{
         display: block;
     }
     .resultSide{
         width: 100%;
+    }
+    .resultSide:nth-of-type(1)>#searchBoxCont {
+        height: 54px;
+    }
+    .resultSide #searchBoxCont input {
+        width: calc(100% - 54px);
+    }
+    .resultSide:nth-of-type(1)>#searchBoxCont>div {
+        width: 40px;
+        height: 40px;
     }
 }
 
