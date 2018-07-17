@@ -7,7 +7,12 @@
     "start": "webpack && node ./bin/www",
     "start:watch": "nodemon ./bin/www",
     "bundle": "webpack",
-    "bundle:watch": "webpack --watch"
+    "bundle:watch": "webpack --watch",
+    "production:start": "pm2 start ./bin/www --name hope",
+    "production:restart": "pm2 restart hope",
+    "production:stop": "pm2 stop hope",
+    "production:delete": "pm2 delete hope",
+    "pull": "git pull && npm run production:restart"
   },
   "author": "HackaIran",
   "repository": {
