@@ -1,3 +1,7 @@
+const questions = require('../../config/adviser/questions.config');
+
+//
+
 const LicenseAdviser = require('hope-license-adviser');
 
 const Advice = require('../model/Advice');
@@ -6,16 +10,21 @@ const AdviserController = {};
 
 const licenseAdviser = new LicenseAdviser();
 
-AdviserController.advice = (answers) => {
+AdviserController.showAdviser = function(res){
+
+    res.render('adviser/index',{'title':'Adviser',questions});
+}
+
+AdviserController.advice = function(answers) {
     return new Promise((resolve, reject) => {
         let results = licenseAdviser.advice(answers);
-        AdviserController.save(answers, results).then(() => {
+        this.save(answers, results).then(() => {
             resolve(results);
         })
     })
 }
 
-AdviserController.save = (answers, licenses) => {
+AdviserController.save = function(answers, licenses) {
     return new Promise((resolve, reject) => {
         let newAdvice = new Advice({
             answers,

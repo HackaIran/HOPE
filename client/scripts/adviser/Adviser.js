@@ -95,8 +95,23 @@ class Advice {
             // for finishing
 
             document.querySelectorAll('.questionWrapper:last-of-type .option').forEach(option => {
-                option.onclick = () => {
-                    this.advice()
+                option.onclick = function(e) {
+                    e.stopPropagation()
+                    this.parentNode.querySelector('.option.active').classList.remove('active');
+                    this.classList.add('active');
+                    let activeElem = $$('.questionWrapper.active');
+
+                    if (activeElem.nextElementSibling) {
+                        activeElem.classList.remove('active');
+                        activeElem.nextElementSibling.classList.add('active')
+                        that.reprepareQuestionsDesign();
+                        that.redesignQuestions();
+                    }
+
+                    // only advice beside routins
+
+                    that.advice();
+
                 }
             })
 

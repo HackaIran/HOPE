@@ -18,42 +18,21 @@ html
         .loading
           img(src='images/loading.gif')
         .chooserSliderWrapper
-          .questionWrapper(data-name='commercialUse').active
-            .questionText Are you looking for commercial use?
-            .optionsWrapper
-              .option(data-value=1) Yes
-              .option(data-value=2) No
-              .option(data-value=3).active Not Sure
-          .questionWrapper
-            .questionText Are you looking for commercial use?
-            .optionsWrapper
-              .option(data-value=1) Yes
-              .option(data-value=2) No
-              .option(data-value=3).active Not Sure
-          .questionWrapper
-            .questionText Are you looking for commercial use?
-            .optionsWrapper
-              .option(data-value=1) Yes
-              .option(data-value=2) No
-              .option(data-value=3).active Not Sure
-          .questionWrapper
-            .questionText Are you looking for commercial use?
-            .optionsWrapper
-              .option(data-value=1) Yes
-              .option(data-value=2) No
-              .option(data-value=3).active Not Sure
-          .questionWrapper
-            .questionText Are you looking for commercial use?
-            .optionsWrapper
-              .option(data-value=1) Yes
-              .option(data-value=2) No
-              .option(data-value=3).active Not Sure
-          .questionWrapper
-            .questionText Are you looking for commercial use?
-            .optionsWrapper
-              .option(data-value=1) Yes
-              .option(data-value=2) No
-              .option(data-value=3).active Not Sure
+          each question,index in questions
+            if(index == 0)
+              .questionWrapper(data-name=question.name).active
+                .questionText=question.text
+                .optionsWrapper
+                  .option(data-value=1) Yes
+                  .option(data-value=2) No
+                  .option(data-value=3).active Not Sure
+            else
+              .questionWrapper(data-name=question.name)
+                .questionText Are you looking for commercial use?
+                .optionsWrapper
+                  .option(data-value=1) Yes
+                  .option(data-value=2) No
+                  .option(data-value=3).active Not Sure
         .resultsWrapper
           header Suggested licenses:
           ul
