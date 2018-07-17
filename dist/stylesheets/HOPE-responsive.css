@@ -8,9 +8,55 @@
 }
 
 @media screen and (max-width: 1000px) {
+    body {
+        overflow-y: auto;
+    }
+    .resultSide:nth-of-type(2) {
+        padding: 0 30px;
+    }
+    .resultSide:nth-of-type(1) {
+        width: 100%;
+        padding: 40px;
+        padding-top: 70px;
+        padding-bottom: 20px;
+    }
+    .resultSide:nth-of-type(2)>h2 {
+        text-align: center;
+    }
+    .tipBlur {
+        display: none;
+    }
+    #tipsCont {
+        margin-bottom: 50px;
+        margin-top: 40px;
+    }
+    .tipHelp {
+        display: none;
+    }
+    .tipHeading {
+        line-height: 40px;
+        margin: 0px;
+        margin-top: 5px;
+    }
+    .tip {
+        margin-bottom: 50px;
+    }
+    #scoreResultCont {
+        margin-top: 50px;
+    }
     #wrapper{
-        height: auto;
         min-height: 100%;
+        overflow-y: auto;
+        position: relative;
+    }
+    footer {
+        position: relative;
+        padding-bottom: 30px;
+    }
+    footer span {
+        opacity: 0;
+        display: block;
+        margin: 10px;
     }
     #resultCont{
         display: block;
