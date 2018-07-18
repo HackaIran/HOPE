@@ -170,7 +170,7 @@ class Test {
                 fixIcon.setAttribute("target","_blank");
                 // fixIcon.classList.add('soon')
                 if(/license/i.test(tip.heading)){
-                    fixIcon.href = 'http://hackairan.com/hope/adviser';
+                    fixIcon.href = 'http://hope.hackairan.com/adviser';
                 }else{
                     fixIcon.style.display = 'none'
                 }
