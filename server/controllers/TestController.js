@@ -51,6 +51,8 @@ class TestController {
 
                         result = this.calculateProps(result);
 
+                        result.quality = Math.floor(result.quality)
+
                         resolve(result);
 
                     });
